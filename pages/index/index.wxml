@@ -1,0 +1,120 @@
+<!--index.wxml-->
+
+<view>
+  <view class='top_margin'>
+
+  </view>
+  <view class='top_bac'>
+    <view class='top_left'>
+      <image class='userinfo-avatar' src='{{avatar_img}}'></image>
+      <view class='top_left_height'>
+        <text class='top_left_font_size'>{{name}}</text>
+        <text class='top_left_phone_font_size'>手机 : {{phonenum}} </text>
+      </view>
+    </view>
+    <view class='top_right'>
+      <view class='top_right_height' bindtap='mymd'>
+        <image class='dindan_icon' src='/images/icon_center.png'></image>
+        <text class='userinfo_text'>我的免单</text>
+      </view>
+      <view class='top_right_height'>
+        <image class='dindan_icon' src='/images/icon_order.png'></image>
+        <text class='userinfo_text'>商家中心</text>
+      </view>
+    </view>
+
+  </view>
+
+  <!-- 停止位置:
+    <input value='{{luckPosition}}' style="width:100%;text-align:center" bindinput='input' type='number'></input> -->
+
+  <view class="av">
+
+    <view class='view_back'>
+      <view class='four_number_view' hidden='{{zhezhaoval}}'>
+        <text class='four_number_view_text_size'>请输入四位抽奖码</text>
+        <view class='view_hidden'>
+          <input class='input' bindinput='one' maxlength='1' placeholder='1' type='number' focus="{{inputShowed1}}"></input>
+          <input class='input' bindinput='two' maxlength='1' placeholder='1' type='number' focus="{{inputShowed2}}"></input>
+          <input class='input' bindinput='three' maxlength='1' placeholder='1' type='number' focus="{{inputShowed3}}"></input>
+          <input class='input' bindinput='four' maxlength='1' placeholder='1' type='number' focus="{{inputShowed4}}"></input>
+        </view>
+        <button class='button_down' bindtap='submit'>确定</button>
+      </view>
+
+      <view class='frame_view'>
+
+        <view class='frame_row'>
+          <view class='jl_item'>
+            <image class='frame_item' style='opacity:{{color[0]}}' src='{{images_back}}'></image>
+            <image class='jl_item_1' style='opacity:{{color[0]}}' src='{{images[0].Icon}}'></image>
+          </view>
+          <view class='jl_item'>
+            <image class='frame_item' style='opacity:{{color[1]}}' src='{{images_back}}'></image>
+            <image class='jl_item_1' style='opacity:{{color[1]}}' src='{{images[1].Icon}}'></image>
+          </view>
+
+          <view class='jl_item'>
+            <image class='frame_item' style='opacity:{{color[2]}}' src='{{images_back}}'></image>
+            <image class='jl_item_1' style='opacity:{{color[2]}}' src='{{images[2].Icon}}'></image>
+          </view>
+
+        </view>
+
+        <view class='frame_row'>
+          <view class='jl_item'>
+            <image class='frame_item' style='opacity:{{color[7]}}' src='{{images_back}}'></image>
+            <image class='jl_item_1' style='opacity:{{color[7]}}' src='{{images[7].Icon}}'></image>
+          </view>
+          <image class='frame_item' src='{{btnconfirm}}'></image>
+          <!-- bindtap='{{clickLuck}}' -->
+          <view class='jl_item'>
+            <image class='frame_item' style='opacity:{{color[3]}}' src='{{images_back}}'></image>
+            <image class='jl_item_1' style='opacity:{{color[3]}}' src='{{images[3].Icon}}'></image>
+          </view>
+        </view>
+        <view class='frame_row'>
+          <view class='jl_item'>
+            <image class='frame_item' style='opacity:{{color[6]}}' src='{{images_back}}'></image>
+            <image class='jl_item_1' style='opacity:{{color[6]}}' src='{{images[6].Icon}}'></image>
+          </view>
+          <view class='jl_item'>
+            <image class='frame_item' style='opacity:{{color[5]}}' src='{{images_back}}'></image>
+            <image class='jl_item_1' style='opacity:{{color[5]}}' src='{{images[5].Icon}}'></image>
+          </view>
+          <view class='jl_item'>
+            <image class='frame_item' style='opacity:{{color[4]}}' src='{{images_back}}'></image>
+            <image class='jl_item_1' style='opacity:{{color[4]}}' src='{{images[4].Icon}}'></image>
+          </view>
+        </view>
+      </view>
+    </view>
+
+
+
+
+
+    <view class="modals modals-bottom-dialog" hidden="{{hideModal}}">
+      <view class="modals-cancel" bindtap=""></view>
+      <view class="bottom-dialog-body bottom-pos" animation="{{animationData}}">
+
+        <image class='userinfo-avatar' src='{{headimg}}'></image>
+        <view class='bottom_text'>欢迎你来到</view>
+        <view class='bottom_text'>免单王小程序</view>
+        <button class='button' open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 微信授权 </button>
+      </view>
+    </view>
+  </view>
+
+  <view class='huodongshuoming'>
+    <image class='huodongshuoming_image' src='/images/lottery_bg_01.png' mode='aspectFill'></image>
+    <view class='list_view'>
+      <view class='item_view' wx:for="{{list}}" wx:for-item="i">
+        <view class='item_view_text'>
+          {{i}}
+        </view>
+      </view>
+    </view>
+
+  </view>
+</view>

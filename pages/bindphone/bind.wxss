@@ -1,0 +1,105 @@
+/* pages/bindphone/bind.wxss */
+
+.bindphone_top {
+  height: 100rpx;
+  background: #fee;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  font-size: 28rpx;
+  border-radius: 30rpx;
+  margin: 30rpx;
+}
+
+.bind_phone {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  font-size: 30rpx;
+}
+
+.bindphone_body {
+  padding-top: 30rpx;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  background: #fee;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: flex-start;
+  font-size: 28rpx;
+  border-radius: 30rpx;
+  margin: 30rpx;
+}
+
+.line {
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  background: #000;
+  height: 1px;
+}
+
+.input {
+  width: 300rpx;
+  height: 80rpx;
+  border-color: #ebebeb;
+  border-style: solid;
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 1px;
+  border-left-width: 0px;
+  margin-bottom: 30rpx;
+  text-align: justify;
+}
+
+.input1 {
+  width: 300rpx;
+  height: 80rpx;
+  border-color: #ebebeb;
+  border-style: solid;
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 1px;
+  border-left-width: 0px;
+  margin-bottom: 10rpx;
+  text-align: justify;
+}
+
+.yanzheng_view {
+  display: flex;
+  flex-direction: row;
+
+  align-content: space-between;
+  justify-content: space-around;
+  align-items: flex-end;
+  font-size: 28rpx;
+}
+
+.yanzheng_img {
+  text-align: center;
+  font-size: 28rpx;
+  margin-bottom: 10rpx;
+}
+
+.yyyz {
+  display: flex;
+  flex-direction: row;
+
+  align-content: flex-end;
+  justify-content: flex-end;
+  align-items: flex-end;
+  font-size: 28rpx;
+  padding-right: 30rpx;
+  margin-bottom: 80rpx;
+}
+
+.submit {
+  width: 400rpx;
+  text-align: center;
+  font-size: 28rpx;
+  margin-bottom: 70rpx;
+  
+}

@@ -1,0 +1,35 @@
+<!--pages/mymd/md.wxml-->
+<view>
+
+
+  <block wx:for="{{list}}" wx:for-item="item" wx:key="index">
+      <view class='list_view' bindtap='click_item' data-bean='{{item}}'>
+        <view class='list_item'>
+          <view class='item_left'>
+            <image class='item_avatar' src='{{item.ProductIcon}}' mode='scaleToFill'></image>
+          </view>
+          <view class='item_right'>
+            <!-- <text class='list_item_margin'>{{list[item].statDate}}</text> -->
+            <view class='item_name_between'>
+              <text class='item_tit_name'>{{item.ProductName}}</text>
+              <text class='item_tit_cotent_size'>原价：￥{{item.Price}}</text>
+            </view>
+
+            <text class='item_tit_cotent_size'>商家：{{item.AgentName}}</text>
+            <text class='item_tit_cotent_size'>地址：{{item.Address}}</text>
+            <text class='item_tit_cotent_size'>电话：{{item.Phone}}</text>
+
+          </view>
+
+        </view>
+
+        <!-- <view class='item_bottom'>
+          <text class='item_tit_name_size'>消费规则</text>
+
+        </view>
+        <text class='item_tit_name_size'>{{item.UseRole}}+"SASDAasdasdasd\nasdadasdasd "</text> -->
+      </view>
+
+      <view class='divLine'></view>
+    </block>
+</view>

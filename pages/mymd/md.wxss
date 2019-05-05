@@ -1,0 +1,24 @@
+/* pages/mymd/md.wxss */
+
+.list_view {
+  padding: 15rpx;
+  align-items: center;
+  display: flex;
+  background: #fef;
+  flex-direction: column;
+}
+
+
+.list_item{
+  height: 300rpx;
+  width: 100%;
+  background: #ffe;
+  
+}
+.item_left {
+  height: 150rpx;
+  width: 150rpx;
+  display: flex;
+  margin-right: 20rpx;
+  align-items: flex-start;
+}
