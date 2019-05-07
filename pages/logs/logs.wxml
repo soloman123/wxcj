@@ -4,3 +4,15 @@
     <text class="log-item">{{index + 1}}. {{log}}</text>
   </block>
 </view>
+   <view class='item_right'>
+            <!-- <text class='list_item_margin'>{{list[item].statDate}}</text> -->
+            <view class='item_name_between'>
+              <text class='item_tit_name'>{{item.ProductName}}</text>
+              <text class='item_tit_cotent_size'>原价：￥{{item.Price}}</text>
+            </view>
+
+            <text class='item_tit_cotent_size'>商家：{{item.AgentName}}</text>
+            <text class='item_tit_cotent_size'>地址：{{item.Address}}</text>
+            <text class='item_tit_cotent_size'>电话：{{item.Phone}}</text>
+
+          </view>

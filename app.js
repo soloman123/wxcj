@@ -32,7 +32,7 @@ App({
 
   },
   globalData:{
-
+    userinfo:null,
     openid:'',
 
   }

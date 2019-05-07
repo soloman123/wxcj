@@ -1,7 +1,8 @@
 {
   "pages": [
+      "pages/mymd/md",
     "pages/index/index",
-    "pages/mymd/md",
+ 
     "pages/zjjg/zjjg",
     "pages/bindphone/bind"
   ],

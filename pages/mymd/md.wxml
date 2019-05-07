@@ -3,33 +3,31 @@
 
 
   <block wx:for="{{list}}" wx:for-item="item" wx:key="index">
-      <view class='list_view' bindtap='click_item' data-bean='{{item}}'>
-        <view class='list_item'>
-          <view class='item_left'>
-            <image class='item_avatar' src='{{item.ProductIcon}}' mode='scaleToFill'></image>
-          </view>
-          <view class='item_right'>
-            <!-- <text class='list_item_margin'>{{list[item].statDate}}</text> -->
-            <view class='item_name_between'>
-              <text class='item_tit_name'>{{item.ProductName}}</text>
-              <text class='item_tit_cotent_size'>原价：￥{{item.Price}}</text>
-            </view>
+    <view class='list_view' bindtap='click_item' data-bean='{{item}}'>
 
-            <text class='item_tit_cotent_size'>商家：{{item.AgentName}}</text>
-            <text class='item_tit_cotent_size'>地址：{{item.Address}}</text>
-            <text class='item_tit_cotent_size'>电话：{{item.Phone}}</text>
-
-          </view>
-
+      <view class='list_item'>
+        <view class='item_left'>
+          <image class='item_avatar' src='/images/head.png' mode='scaleToFill'></image>
         </view>
+        <view class='item_right'>
 
-        <!-- <view class='item_bottom'>
-          <text class='item_tit_name_size'>消费规则</text>
-
+          <view class='je'>
+            <view>{{item.Name}}</view>
+            <view>￥{{item.Cost}}</view>
+          </view>
+          <view wx:if="{{item.PayState ==1}}"> 编号：{{item.Code}}</view>
+          <view wx:if="{{item.PayState ==1}}">有效期到:{{item.ExpireDate}}</view>
+          <view class='je'>
+            <view wx:if="{{item.PayState ==1}}">购买时间:{{item.PayTime}}</view>
+            <view wx:elif="{{item.PayState ==0}}">剩余支付时间:{{item.RemainingTime}}</view>
+            <view wx:else></view>
+            <view wx:if="{{item.PayState ==1}}">已支付</view>
+            <view wx:elif="{{item.PayState ==0}}" class='red'>等待支付</view>
+            <view wx:else>过期</view>
+          </view>
         </view>
-        <text class='item_tit_name_size'>{{item.UseRole}}+"SASDAasdasdasd\nasdadasdasd "</text> -->
       </view>
 
-      <view class='divLine'></view>
-    </block>
+    </view>
+  </block>
 </view>
