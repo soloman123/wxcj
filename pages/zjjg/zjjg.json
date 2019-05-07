@@ -1,7 +1,7 @@
 {
   "navigationBarTitleText": "免单王",
   "backgroundTextStyle": "light",
-  "navigationBarBackgroundColor": "#f00",
-  "navigationBarTextStyle": "black",
+  "navigationBarBackgroundColor": "#000",
+  "navigationBarTextStyle": "white",
   "onReachBottomDistance":300
 }

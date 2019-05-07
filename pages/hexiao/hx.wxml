@@ -1,0 +1,43 @@
+<!--pages/hexiao/hx.wxml-->
+<view>
+
+
+  <view class='list_view'>
+
+    <view class='list_item'>
+      <view class='item_left'>
+        <image class='item_avatar' src='{{item.ProductIcon}}' mode='scaleToFill'></image>
+      </view>
+      <view class='item_right'>
+
+        <view class='je'>
+          <view>{{item.ProductName}}</view>
+          <view>￥{{item.Price}}</view>
+        </view>
+        <view> 商家:{{item.AgentName}}</view>
+        <view>地址:{{item.Address}}</view>
+        <view class='je'>
+          <view>电话:{{item.Phone}}</view>
+        </view>
+      </view>
+    </view>
+
+
+
+  </view>
+
+  <view class='hx'>
+    <text>核 销 码：{{item.ConsumptionCode}}</text>
+    <text>核销时间：{{item.ConsumptionTime}}</text>
+    <view class='qcode'>
+      <image class='qcode_img' src='{{item.ConsumptionCode}}' mode=''></image>
+
+    </view>
+    <view class='qcode'>
+      <text>消费规则</text>
+    </view>
+
+    <text>{{item.UseRole}}</text>
+
+  </view>
+</view>

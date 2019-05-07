@@ -13,15 +13,16 @@
     <view>
       <view class='yanzheng_view'>
         <view class='bind_phone'>
-          <input class='input' maxlength='11' type="number" placeholder='输入手机号'></input>
-          <input class='input1' maxlength='4' type="number" placeholder='请输入验证码'></input>
+          <input class='input' maxlength='11' type="number" placeholder='输入手机号' bindinput='phone_input'></input>
+          <input class='input1' maxlength='4' type="number" placeholder='请输入验证码'
+          bindinput='code_input'></input>
         </view>
         <view class='yanzheng_view'>
-          <button class='yanzheng_img'>获取验证码</button>
+          <button class='yanzheng_img' bindtap='getcode' disabled='{{disabled}}'>{{btntext}}</button>
         </view>
       </view>
-      <view class='yyyz'>收不到短信？</view>
-       <button class='submit'>验  证</button>
+      <view class='yyyz' bindtap='yuyin_click'>收不到短信?</view>
+       <button class='submit' bindtap='submit'>验  证</button>
     </view>
 
 

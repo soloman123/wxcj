@@ -1,0 +1,39 @@
+<!--pages/pay/pay.wxml-->
+<view>
+  <view class='list_view'>
+    <view class='list_item'>
+      <view class='item_left'>
+        <image class='item_avatar' src='{{item.Icon}}' mode='scaleToFill'></image>
+      </view>
+      <view class='item_right'>
+        <view class='je'>
+          <view class='name_text_size'>{{item.Name}}</view>
+        </view>
+        <view class='je'>
+          <view class='yxq_text_size'>有效期到:{{item.ExpireDate}}</view>
+        </view>
+        <view class='yxq_text_size'>价格:￥{{item.Cost}}</view>
+      </view>
+    </view>
+    <view class='je'>
+      <view class='pay_text'>您需支付:</view>
+      <view class='pay_text_c'>{{item.Cost}}元</view>
+    </view>
+  </view>
+
+  <view class='pay_view_'>
+
+    <view class='h_pay_view'>
+      <image class='icon' src='/images/icon_center.png'></image>
+      <view class='zhifufangshi_text'>微信支付</view>
+    </view>
+    <icon class='icon' type='success'></icon>
+  </view>
+  <view class='pay_view'>
+
+
+
+    <button class='pay_button' bindtap='pay_mit'>去付款</button>
+  </view>
+
+</view>

@@ -103,10 +103,14 @@ Page({
     if (this.data.zhezhaoval ===false){
         return;
       }
-      //中奖
-      wx.navigateTo({
-        url: '../mymd/md?deviceId=' + this.data.deviceId
-      })
+      let that = this;
+      setTimeout(function(){
+        wx.navigateTo({
+          url: '../mymd/md?deviceId=' + that.data.deviceId
+        })
+
+      },100);
+     
 
   },
 
@@ -170,6 +174,7 @@ Page({
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
           wx.getUserInfo({
             success: res => {
+              app.globalData.userInfo = res.userInfo;
               this.setData({
                 hideModal: true,
                 name: res.userInfo.nickName,
@@ -205,7 +210,7 @@ Page({
     if (res.detail.errMsg === 'getUserInfo:fail auth deny') {
 
     } else {
-
+      app.globalData.userInfo = res.detail.userInfo;
       this.setData({
         hideModal: true,
         name: res.detail.userInfo.nickName,
@@ -322,7 +327,7 @@ Page({
           if (e.data.images[which].GiftBagPublishId > 0) {
             //中奖
             wx.navigateTo({
-              url: '../zjjg/zjjg?deviceId='+e.data.deviceId
+              url: '../zjjg/zjjg?deviceId=' + e.data.deviceId + '&GiftBagPublishId=' + e.data.images[which].GiftBagPublishId 
             })
           } else {
             //中奖

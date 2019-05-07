@@ -1,10 +1,16 @@
 {
   "pages": [
-      "pages/mymd/md",
+      "pages/bindphone/bind",
     "pages/index/index",
- 
     "pages/zjjg/zjjg",
-    "pages/bindphone/bind"
+   
+
+    "pages/hexiao/hx",
+    "pages/mymd/md",
+  
+ 
+    "pages/lbxq/lbxq",
+    "pages/pay/pay"
   ],
   "window": {
     "backgroundTextStyle": "light",

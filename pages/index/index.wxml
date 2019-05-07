@@ -34,10 +34,10 @@
       <view class='four_number_view' hidden='{{zhezhaoval}}'>
         <text class='four_number_view_text_size'>请输入四位抽奖码</text>
         <view class='view_hidden'>
-          <input class='input' bindinput='one' maxlength='1' placeholder='1' type='number' focus="{{inputShowed1}}"></input>
-          <input class='input' bindinput='two' maxlength='1' placeholder='1' type='number' focus="{{inputShowed2}}"></input>
-          <input class='input' bindinput='three' maxlength='1' placeholder='1' type='number' focus="{{inputShowed3}}"></input>
-          <input class='input' bindinput='four' maxlength='1' placeholder='1' type='number' focus="{{inputShowed4}}"></input>
+          <input class='input' bindinput='one' maxlength='1'  type='number' focus="{{inputShowed1}}"></input>
+          <input class='input' bindinput='two' maxlength='1'  type='number' focus="{{inputShowed2}}"></input>
+          <input class='input' bindinput='three' maxlength='1'  type='number' focus="{{inputShowed3}}"></input>
+          <input class='input' bindinput='four' maxlength='1'  type='number' focus="{{inputShowed4}}"></input>
         </view>
         <button class='button_down' bindtap='submit'>确定</button>
       </view>

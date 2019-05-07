@@ -1,6 +1,6 @@
-// pages/mymd/md.js
+// pages/lbxq/lbxq.js
 
-//获取应用实例
+
 const app = getApp()
 var network = require("../../utils/network.js")
 Page({
@@ -16,44 +16,37 @@ Page({
     PageIndex: 1,   // 设置加载的第几次，默认是第一次  
   },
 
+  load: function (_PrizeId) {
+    console.log(_PrizeId);
+    var data = {
+      PrizeId: _PrizeId,
+      PageIndex: this.data.PageIndex,
+    }
+    network.getData("UserProducts", data, this.doSuccess, this.doFail, 1);
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.load();
+    this.load(options.PrizeId);
   },
 
-  load: function () {
-    var data = {
-      OpenId: app.globalData.openid,
-      PageIndex: this.data.PageIndex,
-    }
-    wx.showLoading({
-      title: '正在加载数据...',
+  click_item:function(e){
+
+    wx.navigateTo({
+                         
+      url: '../hexiao/hx?PrizeProductid=' + 
+        this.data.list[e.currentTarget.dataset.index].PrizeProductid +"&ConsumptionState="+
+        this.data.list[e.currentTarget.dataset.index].ConsumptionState
+
     })
-    network.getData("UserGiftBag", data, this.doSuccess, this.doFail, 1);
-  },
 
-
-  click_item: function (e) {
-    
-    if (this.data.list[e.currentTarget.dataset.index].PayState === 0){
-      wx.navigateTo({
-        url: '../pay/pay?retdata=' + JSON.stringify(this.data.list[e.currentTarget.dataset.index])
-      })
-    }else{
-      wx.navigateTo({
-        url: '../lbxq/lbxq?PrizeId=' + this.data.list[e.currentTarget.dataset.index].PrizeId
-      })
-    }
-  
-    
-    // network.getData("UserProducts", data, this.doSuccess, this.doFail, 2);
+      // ? info = ' + JSON.stringify(this.data.list[e.currentTarget.dataset.index])
   },
 
   doSuccess: function (e, tpye) {
     console.log(e);
-    wx.hideLoading();
     var that = this;
     switch (tpye) {
       case 1: {
@@ -78,8 +71,9 @@ Page({
     }
   },
   doFail: function () {
-    wx.hideLoading();
+
   },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -129,9 +123,6 @@ Page({
       request = false;
     }
     if (request) {
-      wx.showLoading({
-        title: '正在加载数据...',
-      })
       this.setData({
         isFromSearch: false,
       })

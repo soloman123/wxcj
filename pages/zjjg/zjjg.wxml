@@ -1,16 +1,13 @@
 <!--pages/zjjg/zjjg.wxml-->
-<view class='back'>
-
+<view>
   <view class='zjjg_back'>
-    <text class='tit_sty'>恭喜您抽中 {{retdata.Name}}</text>
+    <text class='tit_sty'>恭喜您抽中</text>
+    <text class='tit_sty'> {{retdata.Name}}</text>
+    <image class='liba_tit' src='{{retdata.Icon}}' mode='scaleToFill'></image>
+    <view class='libaojl'>此礼包中包括如下商品，价值{{retdata.Price}}元.</view>
+    <view class='libaojl'>礼包有效期到:{{retdata.ExpireDate}}</view>
   </view>
-
-  <view class='libaojl'>此礼包中包括如下商品，价值{{retdata.Price}}元.</view>
-  <view class='libaojl'>礼包有效期到:{{retdata.ExpireDate}}</view>
-
-
   <view class='list_view'>
-
     <block wx:for="{{list}}" wx:for-item="item" wx:key="index">
       <view class='item' bindtap='click_item' data-bean='{{item}}'>
         <view class='item_c'>
@@ -21,40 +18,35 @@
             <!-- <text class='list_item_margin'>{{list[item].statDate}}</text> -->
             <view class='item_name_between'>
               <text class='item_tit_name'>{{item.ProductName}}</text>
-              <text class='item_tit_cotent_size'>原价：￥{{item.Price}}</text>
+              <text class='item_tit_cotent_size1'>原价:￥{{item.Price}}</text>
             </view>
-
             <text class='item_tit_cotent_size'>商家：{{item.AgentName}}</text>
             <text class='item_tit_cotent_size'>地址：{{item.Address}}</text>
             <text class='item_tit_cotent_size'>电话：{{item.Phone}}</text>
-
           </view>
 
         </view>
 
         <view class='item_bottom'>
-          <text class='item_tit_name_size'>消费规则</text>
-
+          <view class='line1'></view>
+          <text class='item_tit_name_size1'>消费规则</text>
+          <view class='line1'></view>
         </view>
-        <text class='item_tit_name_size'>{{item.UseRole}}+"SASDAasdasdasd\nasdadasdasd "</text>
+        <text class='item_tit_name_size'>{{item.UseRole}}"</text>
       </view>
-
-      <view class='divLine'></view>
     </block>
     <view class='test'></view>
   </view>
 
   <view class='pay_view'>
-
     <view class='pay_button_view'>
       <view class='left'>
         <view class='left_text_name'>{{retdata.Name}}</view>
         <view class='left_text_name_b'>价格: ￥{{retdata.Cost}}</view>
       </view>
-
-
-      <button class='pay_button' bindtap='pay_mit'>购买</button>
+      <view class='pay_button' bindtap='pay_mit'>
+      <text>购买</text>
+      </view>
     </view>
-
   </view>
 </view>

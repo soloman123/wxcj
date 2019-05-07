@@ -1,0 +1,91 @@
+/* pages/hexiao/hx.wxss */
+
+.list_view {
+  padding: 15rpx;
+  display: flex;
+  background: #fef;
+}
+
+.item_right {
+  display: flex;
+  flex-direction: row;
+}
+
+.item_avatar {
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 30%;
+}
+
+.list_item {
+  height: 230rpx;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-items: flex-start;
+  justify-content: flex-start;
+  background: #ffe;
+  flex-direction: row;
+}
+
+.item_left {
+  height: 150rpx;
+  width: 150rpx;
+  display: flex;
+  margin-right: 20rpx;
+  align-items: center;
+}
+
+.item_right {
+  height: 200rpx;
+  display: flex;
+  width: 100%;
+  margin-right: 20rpx;
+  flex-direction: column;
+  justify-items: stretch;
+  justify-content: space-around;
+  align-items: flex-start;
+  font-size: 30rpx;
+}
+
+.je {
+  display: flex;
+  width: 100%;
+  margin-right: 20rpx;
+  flex-direction: row;
+  justify-items: space-between;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.hx {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  font-size: 30rpx;
+  margin-left: 20rpx;
+  align-items: flex-start;
+  justify-items: flex-start;
+  justify-content: flex-start;
+  background: #ffe;
+  flex-direction: column;
+}
+
+.red {
+  color: #f00;
+}
+
+
+.qcode{
+  width: 100%;
+  display: flex;
+  background: #fef;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+}
+.qcode_img{
+  background: #f00;
+  width: 300rpx;
+  height: 300rpx;
+}

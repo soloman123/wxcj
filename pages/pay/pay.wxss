@@ -1,0 +1,161 @@
+/* pages/pay/pay.wxss */
+
+page {
+  width: 100%;
+  overflow-x: hidden;
+  background: #dbdbdb;
+}
+
+.list_view {
+  height: 320rpx;
+  display: flex;
+  background: #fff;
+  flex-direction: column;
+}
+
+.item_right {
+  display: flex;
+  flex-direction: row;
+}
+
+.item_avatar {
+  width: 140rpx;
+  height: 140rpx;
+  border-color: #ddd;
+  border-style: solid;
+  border-top-width: 1px;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+}
+
+.name_text_size {
+  font-size: 30rpx;
+  color: #333;
+}
+
+.yxq_text_size {
+  font-size: 24rpx;
+  color: #878787;
+}
+
+.list_item {
+  width: 100%;
+  padding-top: 42rpx;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  margin-bottom: 42rpx;
+  display: flex;
+  justify-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: row;
+}
+
+.item_left {
+  height: 150rpx;
+  width: 150rpx;
+  display: flex;
+  margin-right: 20rpx;
+  align-items: center;
+}
+
+.item_right {
+  height: 140rpx;
+  display: flex;
+  width: 100%;
+  margin-right: 20rpx;
+  flex-direction: column;
+  justify-items: stretch;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.pay_text {
+  font-size: 26rpx;
+  color: #333;
+  margin-left: 30rpx;
+  text-align: end;
+}
+
+.pay_text_c {
+  font-size: 38rpx;
+  color: #f34343;
+
+}
+
+.je {
+  display: flex;
+  width: 100%;
+  margin-top: 15prx;
+  margin-right: 20rpx;
+  align-items: center;
+  justify-content: flex-start;
+  justify-items: flex-start;
+}
+
+.hx {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  font-size: 30rpx;
+  margin-left: 20rpx;
+  align-items: flex-start;
+  justify-items: flex-start;
+  justify-content: flex-start;
+  background: #ffe;
+  flex-direction: column;
+}
+
+.red {
+  color: #f00;
+}
+
+.pay_view {
+
+  height: 100rpx;
+  position: fixed;
+  align-items: flex-start;
+  bottom:100rpx;
+  left: 30rpx;
+  right: 30rpx;
+}
+
+.pay_button {
+  width: 100%;
+  color: #fff;
+  background:#ff0000;
+}
+
+.pay_view_ {
+  height: 100rpx;
+  margin-top: 12rpx;
+  padding: 20rpx;
+  display: flex;
+  background: #fff;
+  flex-direction: row;
+  justify-items: center;
+  align-items: center;
+  justify-content: space-between;
+
+}
+
+.h_pay_view {
+  display: flex;
+  margin-left: 30rpx;
+  flex-direction: row;
+  align-items: center;
+}
+
+
+.zhifufangshi_text {
+  font-size: 28rpx;
+  color: #666666;
+  margin-left: 30rpx;
+  text-align: end;
+}
+
+.icon {
+  margin-right: 20rpx;
+  width: 60rpx;
+  height: 60rpx;
+}

@@ -8,32 +8,32 @@ Page({
    * 页面的初始数据
    */
   data: {
+
     phonenum: null,
     retdata: null,
     list: '',
     deviceId: 1,
     isFromSearch: true,
-    PageIndex: 1,   // 设置加载的第几次，默认是第一次  
-     
-  
+    PageIndex: 1, // 设置加载的第几次，默认是第一次  
+
+    GiftBagPublishId: null
   },
 
 
-  load: function () {
+  load: function() {
 
-      wx.showLoading({
-        title: '正在加载',
-      })
-      console.log(this.data.PageIndex);
-      network.getData('GiftBag/' + this.data.deviceId + "?PageIndex =" + this.data.PageIndex, '', this.doSuccess, this.doFail, 0);
-    
+    wx.showLoading({
+      title: '正在加载',
+    })
+    network.getData('GiftBag/' + this.data.GiftBagPublishId + "?PageIndex =" + this.data.PageIndex, '', this.doSuccess, this.doFail, 0);
+    // network.getData('GiftBag/' + 1 + "?PageIndex =" + this.data.PageIndex, '', this.doSuccess, this.doFail, 0);
 
   },
 
-  doSuccess: function (e) {
+  doSuccess: function(e) {
     console.log(e)
     let that = this;
-    setTimeout(function () {
+    setTimeout(function() {
       that.setData({
         retdata: e,
       })
@@ -49,7 +49,7 @@ Page({
       } else {
         wx.showToast({
           title: '以无数据加载',
-          icon:'none'
+          icon: 'none'
         })
         that.setData({
           isFromSearch: true,
@@ -59,26 +59,31 @@ Page({
     }, 400);
 
   },
-  doFail: function (e) {
+  doFail: function(e) {
     wx.hideLoading();
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    // this.data.deviceId = options.deviceId
+  onLoad: function(options) {
+    this.data.deviceId = options.deviceId
+    this.data.GiftBagPublishId = options.GiftBagPublishId;
 
     this.load();
   },
 
 
-  pay_mit: function () {
+  pay_mit: function() {
     console.log(33333);
     console.log(app.globalData.openid);
-
+    // this.data.phonenum= 1;
     if (this.data.phonenum == null) {
       wx.navigateTo({
         url: '../bindphone/bind'
+      })
+    }else{
+      wx.navigateTo({
+        url: '../pay/pay?retdata='+JSON.stringify(this.data.retdata)
       })
     }
   },
@@ -86,35 +91,35 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
     console.log('!!!!!!');
   },
 
@@ -122,7 +127,7 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
 
     var request = false;
@@ -144,7 +149,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })

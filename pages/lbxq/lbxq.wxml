@@ -1,0 +1,32 @@
+<!--pages/lbxq/lbxq.wxml-->
+<view>
+
+
+  <block wx:for="{{list}}" wx:for-item="item" wx:key="index" >
+    <view class='list_view' bindtap='click_item' data-bean='{{item}}' data-index = "{{index}}">
+
+      <view class='list_item'>
+        <view class='item_left'>
+          <image class='item_avatar' src='{{item.ProductIcon}}' mode='scaleToFill'></image>
+        </view>
+        <view class='item_right'>
+
+          <view class='je'>
+            <view>{{item.ProductName}}</view>
+            <view>￥{{item.Price}}</view>
+          </view>
+          <view > 商家:{{item.AgentName}}</view>
+          <view >地址:{{item.Address}}</view>
+          <view class='je'>
+            <view>电话:{{item.Phone}}</view>
+      
+            <view wx:if="{{item.ConsumptionState ==1}}">已消费</view>
+            <view wx:elif="{{item.ConsumptionState ==0}}" >未消费</view>
+            <view wx:else>过期</view>
+          </view>
+        </view>
+      </view>
+
+    </view>
+  </block>
+</view>
