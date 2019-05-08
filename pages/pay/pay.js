@@ -1,18 +1,35 @@
 // pages/pay/pay.js
+
+const app = getApp()
+var util = require("../../utils/util.js");
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    item:'',
+    item: '',
+  },
+
+
+
+
+
+  pay_mit: function () {
+  
+    if (!util.isMobile(app.globalData.phone)) {
+      wx.navigateTo({
+        url: '../bindphone/bind'
+      })
+      return;
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-   
+
     this.setData({
       item: JSON.parse(options.retdata),
     })

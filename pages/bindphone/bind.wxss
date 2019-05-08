@@ -3,17 +3,32 @@
 page {
   width: 100%;
   overflow-x: hidden;
-  background: #dbdbdb;
+  background: #fff;
+}
+
+.p_view {
+  width: 100%;
+  background: #fa0000;
+  display: flex;
+  margin-top: 124rpx;
+  margin-right: 124rpx;
+  justify-content: flex-end;
+}
+
+.yazheng_shouji {
+  position: absolute;
+  font-size: 50rpx;
+  color: #333;
 }
 
 .bindphone_top {
-  height: 100rpx;
-  background: #fff;
+  margin-top: 60rpx;
   display: flex;
   align-items: center;
   align-content: center;
   justify-content: center;
   font-size: 28rpx;
+  flex-direction: column;
   /* border-radius: 30rpx; *//* margin: 30rpx; */
 }
 
@@ -27,11 +42,9 @@ page {
 }
 
 .bindphone_body {
-  margin-top: 30rpx;
+  margin-top: 80rpx;
   padding-top: 30rpx;
-  padding-left: 30rpx;
   padding-right: 30rpx;
-  background: #fff;
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -40,55 +53,51 @@ page {
   /* border-radius: 30rpx; *//* margin: 30rpx; */
 }
 
-.line {
-  margin-top: 20rpx;
-  margin-bottom: 20rpx;
-  background: #bebebe;
-  height: 1px;
-}
-
 .input {
-  width: 400rpx;
-  height: 50rpx;
-  border-color: #ebebeb;
-  border-style: solid;
-  border-top-width: 0px;
-  border-right-width: 0px;
-  border-bottom-width: 1px;
-  border-left-width: 0px;
-  margin-bottom: 40rpx;
+  width: 100%;
   margin-top: 30rpx;
+  margin-bottom: 15rpx;
   text-align: justify;
+  line-height: 60rpx;
 }
 
 .input1 {
-  width: 400rpx;
-  height: 50rpx;
-  border-color: #ebebeb;
-  border-style: solid;
-  border-top-width: 0px;
-  border-right-width: 0px;
-  border-bottom-width: 1px;
-  border-left-width: 0px;
+  width: 60%;
+  line-height: 60rpx;
   margin-bottom: 10rpx;
   text-align: justify;
 }
 
 .yanzheng_view {
   display: flex;
+  margin-left: 60rpx;
   padding-left: 30rpx;
   padding-right: 10rpx;
-  flex-direction: row;
-  align-content: space-between;
-  justify-content: space-between;
-  align-items: flex-end;
+  margin-bottom: 10rpx;
+  flex-direction: column;
   font-size: 28rpx;
+}
+
+/* align-content: space-between;
+  justify-content: space-between; */
+
+.hon {
+  display: flex;
+  margin-top: 20rpx;
+  margin-bottom: 10rpx;
+  flex-direction: row;
+  align-items: center;
+}
+
+.line {
+  height: 1px;
+  width: 100%;
+  background: #ebebeb;
 }
 
 .yanzheng_img {
   text-align: center;
   font-size: 28rpx;
-  margin-bottom: 10rpx;
 }
 
 .yyyz {
@@ -103,8 +112,31 @@ page {
 }
 
 .submit {
-  width: 90%;
+  color: #fff;
   text-align: center;
-  font-size: 28rpx;
-  margin-bottom: 70rpx;
+  line-height: 60rpx;
+  font-size: 36rpx;
+}
+
+.button_view {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+}
+
+.button {
+  display: flex;
+  width: 442rpx;
+  height: 94rpx;
+  background: #f00;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+}
+
+.text_size_30 {
+  font-size: 30rpx;
+  color: #fa0000;
 }

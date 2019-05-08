@@ -188,7 +188,7 @@ page {
   font-size: 24rpx;
   display: -webkit-box;
   color: #333;
-  line-height: 40rpx;
+  line-height: 1.4;
   word-break: break-all;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;

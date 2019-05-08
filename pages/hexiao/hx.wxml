@@ -11,33 +11,42 @@
       <view class='item_right'>
 
         <view class='je'>
-          <view>{{item.ProductName}}</view>
-          <view>￥{{item.Price}}</view>
+          <view class='text_size'>{{item.ProductName}}</view>
+          <view class='text_size_24_red'>原价:￥{{item.Price}}</view>
         </view>
-        <view> 商家:{{item.AgentName}}</view>
-        <view>地址:{{item.Address}}</view>
+        <view class='text_size_24'>商家:{{item.AgentName}}</view>
+        <view class='text_size_24'>地址:{{item.Address}}</view>
         <view class='je'>
-          <view>电话:{{item.Phone}}</view>
+          <view class='text_size_24'>电话:{{item.Phone}}</view>
         </view>
       </view>
-    </view>
 
+     
+    </view>
+    <image hidden='{{isshow}}' class='hexiao_tag' src='../../images/tag_hexiao.png'></image>
 
 
   </view>
 
-  <view class='hx'>
-    <text>核 销 码：{{item.ConsumptionCode}}</text>
-    <text>核销时间：{{item.ConsumptionTime}}</text>
-    <view class='qcode'>
+
+  <view class='hx_back'>
+
+    <view class='hx'>
+
+      <text class='text_size'>核 销 码：{{item.ConsumptionCode}}</text>
+      <text class='text_size'>核销时间：{{item.ConsumptionTime}}</text>
+
+
       <image class='qcode_img' src='{{item.ConsumptionCode}}' mode=''></image>
 
+      <view class='item_bottom'>
+        <view class='line1'></view>
+        <text class='item_tit_name_size1'>消费规则</text>
+        <view class='line1'></view>
+      </view>
     </view>
-    <view class='qcode'>
-      <text>消费规则</text>
+    <view class='pad_view'>
+      <text class='buttom_text_size_24'>{{item.UseRole}}</text>
     </view>
-
-    <text>{{item.UseRole}}</text>
-
   </view>
 </view>

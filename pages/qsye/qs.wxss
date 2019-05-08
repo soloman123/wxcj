@@ -1,0 +1,139 @@
+/* pages/qsye/qs.wxss */
+
+page {
+  width: 100%;
+  overflow-x: hidden;
+  background: #fff;
+}
+
+.top_bac {
+  width: 100%;
+  display: flex;
+  padding: 20rpx;
+  background: #fff;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.fenge{
+  height: 16rpx;
+width: 100%;
+    background: #dbdbdb;
+}
+
+.top_left_font_size {
+  font-size: 28rpx;
+  bottom: 0rpx;
+  color: #bfbfbf;
+}
+
+.top_left_phone_font_size {
+  font-size: 24rpx;
+  bottom: 0rpx;
+  color: #bfbfbf;
+}
+
+.top_left {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.top_left_height {
+  display: flex;
+  height: 150rpx;
+  flex-direction: column;
+  justify-content: space-around;
+  justify-items: center
+}
+
+.top_right_height {
+  display: flex;
+  height: 100%;
+    padding-right: 20rpx;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.top_right {
+  height: 100%;
+  width: 300rpx;
+    padding-right: 20rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.dindan_icon {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+
+
+
+
+.av {
+  display: flex;
+  margin-top: 30rpx;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.userinfo_text {
+  bottom: 0rpx;
+  margin-top: 15rpx;
+  /* white-space: nowrap; */
+  font-size: 24rpx;
+  color: #bfbfbf;
+}
+
+.userinfo {
+  display: flex;
+  height: 120rpx;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.userinfo-avatar {
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+.banner{
+  width: 690rpx;
+  height: 354rpx;
+  margin-top: 98rpx;
+}
+
+
+
+.bottom_text {
+  line-height: 1.7;
+  font-size: 30rpx;
+  color: #333333;
+}
+
+
+.bottom-dialog-body {
+  display: flex;
+ 
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding-top: 130rpx;
+  margin-top: 14rpx;
+  background-color: #fff;
+}
+
+

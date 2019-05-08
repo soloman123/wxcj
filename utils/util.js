@@ -14,6 +14,26 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+
+const ismobile = phone=> {
+  var phonetel = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
+  var moblie = phone;
+  if (isNaN(moblie)) {
+    return false;
+  }
+  else if (moblie.length != 11) {
+
+    return false;
+  } else if (!phonetel.test(moblie)) {
+
+    return false;
+  } else {
+    return true;
+
+  }
+}
+
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  isMobile: ismobile
 }

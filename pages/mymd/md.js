@@ -35,18 +35,21 @@ Page({
   },
 
 
+
+
   click_item: function (e) {
 
-    // if (this.data.list[e.currentTarget.dataset.index].PayState === 0) {
-    //   wx.navigateTo({
-    //     url: '../pay/pay?retdata=' + JSON.stringify(this.data.list[e.currentTarget.dataset.index])
-    //   })
-    // } else {
+console.log("sssss");
+    if (this.data.list[e.currentTarget.dataset.index].PayState === 0) {
+      wx.navigateTo({
+        url: '../pay/pay?retdata=' + JSON.stringify(this.data.list[e.currentTarget.dataset.index])
+      })
+    } else {
       wx.navigateTo({
         url: '../lbxq/lbxq?PrizeId=' + this.data.list[e.currentTarget.dataset.index].PrizeId + "&icon=" +
           this.data.list[e.currentTarget.dataset.index].Icon + "&name=" + this.data.list[e.currentTarget.dataset.index].Name
       })
-    // }
+    }
 
 
     // network.getData("UserProducts", data, this.doSuccess, this.doFail, 2);

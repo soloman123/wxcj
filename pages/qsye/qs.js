@@ -1,15 +1,11 @@
-// pages/hexiao/hx.js
-
-const app = getApp()
-var network = require("../../utils/network.js")
+// pages/qsye/qs.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    item:null,
-    isshow:true,
+
   },
 
   /**
@@ -17,39 +13,13 @@ Page({
    */
   onLoad: function (options) {
 
-    if (options.ConsumptionState === 1){
-      wx.setNavigationBarTitle('面单详情')
-      this.setData({
-        isshow:false
-      })
-    }else{
-      wx.setNavigationBarTitle('核销')
-    }
-    wx.showLoading({
-      title: '加载中',
-    })
-    network.getData("UserProductInfo/" + options.PrizeProductid, '', this.doSuccess, this.doFail, 1);
-    // console.log(that.data.item);
-
-    
   },
 
-  doSuccess:function(e,type){
-    wx.hideLoading();
-    this.setData({
-      item:e,
-    });
-    console.log(this.data.item);
-  },
-
-  doFail:function(){
-    wx.hideLoading();
-  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
 
   /**

@@ -3,26 +3,38 @@
 
 
   <view class='bindphone_top'>
-    <view>
+    <view class='text_size_30'>
       您正在购买免单礼包，需要验证您的手机号码
     </view>
+
+    <view class='p_view'>
+      <view class='yazheng_shouji'>
+        验证手机
+      </view>
+    </view>
+
   </view>
+
   <view class='bindphone_body'>
-    <view>验证手机</view>
-    <view class='line'></view>
     <view>
       <view class='yanzheng_view'>
-        <view class='bind_phone'>
-          <input class='input' maxlength='11' type="number" placeholder='输入手机号' bindinput='phone_input'></input>
-          <input class='input1' maxlength='4' type="number" placeholder='请输入验证码'
-          bindinput='code_input'></input>
-        </view>
-        <view class='yanzheng_view'>
+        <input class='input' maxlength='11' type="number" placeholder='输入手机号' bindinput='phone_input'></input>
+        <view class='line'></view>
+        <view class='hon'>
+          <input class='input1' maxlength='4' type="number" placeholder='请输入验证码' bindinput='code_input'></input>
           <button class='yanzheng_img' bindtap='getcode' disabled='{{disabled}}'>{{btntext}}</button>
+
         </view>
+        <view class='line'></view>
       </view>
       <view class='yyyz' bindtap='yuyin_click'>收不到短信?</view>
-       <button class='submit' bindtap='submit'>验  证</button>
+      <view class='button_view'>
+        <view class='button' bindtap='submit'>
+          <text class='submit' >验 证</text>
+        </view>
+      </view>
+
+
     </view>
 
 

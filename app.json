@@ -1,14 +1,12 @@
 {
   "pages": [
+    "pages/qsye/qs",
     "pages/index/index",
     "pages/lbxq/lbxq",
     "pages/mymd/md",
-   
-    
+    "pages/hexiao/hx",
     "pages/bindphone/bind",
     "pages/zjjg/zjjg",
-    "pages/hexiao/hx",
-  
     "pages/pay/pay"
   ],
   "window": {

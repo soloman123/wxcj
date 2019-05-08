@@ -1,7 +1,7 @@
 // pages/zjjg/zjjg.js
 const app = getApp()
 var network = require("../../utils/network.js")
-
+var util = require("../../utils/util.js");
 Page({
 
   /**
@@ -9,7 +9,7 @@ Page({
    */
   data: {
 
-    phonenum: null,
+ 
     retdata: null,
     list: '',
     deviceId: 1,
@@ -76,7 +76,7 @@ Page({
   pay_mit: function() {
 
     // this.data.phonenum= 1;
-    if (this.data.phonenum == null) {
+    if (!util.isMobile(app.globalData.phone)) {
       wx.navigateTo({
         url: '../bindphone/bind'
       })

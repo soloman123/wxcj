@@ -1,0 +1,30 @@
+<!--pages/qsye/qs.wxml-->
+<view>
+  <view class='top_bac'>
+    <view class='top_left'>
+      <image class='userinfo-avatar' src='../../images/user_img.png'></image>
+      <view class='top_left_height'>
+        <text class='top_left_font_size'>{{name}}</text>
+        <text class='top_left_phone_font_size'>手机 : {{phonenum}} </text>
+      </view>
+    </view>
+    <view class='top_right'>
+      <view class='top_right_height' bindtap='mymd'>
+        <image class='dindan_icon' src='/images/icon_center_gray.png'></image>
+        <text class='userinfo_text'>我的免单</text>
+      </view>
+      <view class='top_right_height'>
+        <image class='dindan_icon' src='/images/icon_order_gray.png'></image>
+        <text class='userinfo_text'>商家中心</text>
+      </view>
+    </view>
+  </view>
+  <view class='fenge'></view>
+
+  <view class='bottom-dialog-body '>
+    <view class='bottom_text'>请您到安装了新媒体互动广告屏的商家，</view>
+    <view class='bottom_text'>用微信“扫一扫”，扫屏上的小程序码，</view>
+    <view class='bottom_text'>参与“免单抽礼包”活动。</view>
+    <image class='banner' src='/images/banner_bottom.png'></image>
+  </view>
+</view>

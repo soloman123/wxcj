@@ -51,9 +51,9 @@ Page({
     console.log(e);
     switch (type) {
       case 1: {
-        if (e === false) {
+        if (e.Code === -1) {
           wx.showToast({
-            title: '服务器返回错误',
+            title: e.Message,
             icon: 'none'
           })
 
