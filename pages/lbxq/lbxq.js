@@ -9,6 +9,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+
+    icon:'',
+    name:'',
     retdata: '',
     list: '',
     deviceId: 1,
@@ -19,7 +22,7 @@ Page({
   load: function (_PrizeId) {
     console.log(_PrizeId);
     var data = {
-      PrizeId: _PrizeId,
+      PrizeId: 22,//_PrizeId,
       PageIndex: this.data.PageIndex,
     }
     network.getData("UserProducts", data, this.doSuccess, this.doFail, 1);
@@ -29,6 +32,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
+    this.setData({
+      name:options.name,
+      icon:options.icon,
+    })
     this.load(options.PrizeId);
   },
 

@@ -1,9 +1,12 @@
 <!--pages/lbxq/lbxq.wxml-->
 <view>
 
-
-  <block wx:for="{{list}}" wx:for-item="item" wx:key="index" >
-    <view class='list_view' bindtap='click_item' data-bean='{{item}}' data-index = "{{index}}">
+  <view class='top_view'>
+  <image class='top_avatar' src='{{icon}}'></image>
+  <text class='top_view_text'>{{name}}</text> 
+  </view>
+  <block wx:for="{{list}}" wx:for-item="item" wx:key="index">
+    <view class='list_view' bindtap='click_item' data-bean='{{item}}' data-index="{{index}}">
 
       <view class='list_item'>
         <view class='item_left'>
@@ -12,17 +15,17 @@
         <view class='item_right'>
 
           <view class='je'>
-            <view>{{item.ProductName}}</view>
-            <view>￥{{item.Price}}</view>
+            <view class='text_size'>{{item.ProductName}}</view>
+            <view class='text_size_24_red'>原价:￥{{item.Price}}</view>
           </view>
-          <view > 商家:{{item.AgentName}}</view>
-          <view >地址:{{item.Address}}</view>
+          <view class='text_size_24'> 商家:{{item.AgentName}}</view>
+          <view class='text_size_24'>地址:{{item.Address}}</view>
           <view class='je'>
-            <view>电话:{{item.Phone}}</view>
-      
-            <view wx:if="{{item.ConsumptionState ==1}}">已消费</view>
-            <view wx:elif="{{item.ConsumptionState ==0}}" >未消费</view>
-            <view wx:else>过期</view>
+            <view class='text_size_24'>电话:{{item.Phone}}</view>
+
+            <view class='text_size_22' wx:if="{{item.ConsumptionState ==1}}">已消费</view>
+            <view class='text_size_22' wx:elif="{{item.ConsumptionState ==0}}">未消费</view>
+            <view class='text_size_22' wx:else>过期</view>
           </view>
         </view>
       </view>

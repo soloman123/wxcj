@@ -1,15 +1,14 @@
 {
   "pages": [
-      "pages/bindphone/bind",
     "pages/index/index",
-    "pages/zjjg/zjjg",
-   
-
-    "pages/hexiao/hx",
-    "pages/mymd/md",
-  
- 
     "pages/lbxq/lbxq",
+    "pages/mymd/md",
+   
+    
+    "pages/bindphone/bind",
+    "pages/zjjg/zjjg",
+    "pages/hexiao/hx",
+  
     "pages/pay/pay"
   ],
   "window": {

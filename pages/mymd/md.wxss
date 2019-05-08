@@ -1,9 +1,18 @@
 /* pages/mymd/md.wxss */
 
+page {
+  width: 100%;
+  overflow-x: hidden;
+  background: #dbdbdb;
+  padding-top: 8rpx;
+}
+
 .list_view {
-  padding: 15rpx;
+  padding: 8rpx;
+  padding-top: 8rpx;
+  padding-left: 16rpx;
+  padding-right: 16rpx;
   display: flex;
-  background: #fef;
 }
 
 .item_right {
@@ -14,25 +23,25 @@
 .item_avatar {
   width: 150rpx;
   height: 150rpx;
-  border-radius: 30%;
 }
 
 .list_item {
-  height: 230rpx;
+  height: 214rpx;
   width: 100%;
   display: flex;
+  padding-left: 26rpx;
   align-items: center;
   justify-items: flex-start;
   justify-content: flex-start;
-  background: #ffe;
+  background: #fff;
   flex-direction: row;
+  border-radius: 10rpx;
 }
 
 .item_left {
   height: 150rpx;
   width: 150rpx;
   display: flex;
- 
   margin-right: 20rpx;
   align-items: center;
 }
@@ -41,7 +50,6 @@
   height: 200rpx;
   display: flex;
   width: 100%;
-
   margin-right: 20rpx;
   flex-direction: column;
   justify-items: stretch;
@@ -50,20 +58,31 @@
   font-size: 30rpx;
 }
 
+.item_name {
+  color: #333;
+  font-size: 30rpx;
+}
 
-.je{
+.item_Cost {
+  color: #f60;
+  font-size: 24rpx;
+}
+
+.Code {
+  font-size: 24rpx;
+  color: #878787;
+}
+
+.je {
   display: flex;
   width: 100%;
-
-  margin-right: 20rpx;
+  margin-right: 26rpx;
   flex-direction: row;
   justify-items: space-between;
   justify-content: space-between;
   align-items: stretch;
-  
 }
 
-
-.red{
+.red {
   color: #f00;
 }

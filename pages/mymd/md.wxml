@@ -3,7 +3,7 @@
 
 
   <block wx:for="{{list}}" wx:for-item="item" wx:key="index">
-    <view class='list_view' bindtap='click_item' data-bean='{{item}}'  data-index = '{{index}}'>
+    <view class='list_view' bindtap='click_item' data-bean='{{item}}' data-index='{{index}}'>
 
       <view class='list_item'>
         <view class='item_left'>
@@ -12,18 +12,18 @@
         <view class='item_right'>
 
           <view class='je'>
-            <view>{{item.Name}}</view>
-            <view>￥{{item.Cost}}</view>
+            <view class='item_name'>{{item.Name}}</view>
+            <view class='item_Cost'>原价:￥{{item.Cost}}</view>
           </view>
-          <view wx:if="{{item.PayState ==1}}"> 编号：{{item.Code}}</view>
-          <view wx:if="{{item.PayState ==1}}">有效期到:{{item.ExpireDate}}</view>
+          <view class='Code' wx:if="{{item.PayState ==1}}"> 编号：{{item.Code}}</view>
+          <view class='Code' wx:if="{{item.PayState ==1}}">有效期到:{{item.ExpireDate}}</view>
           <view class='je'>
-            <view wx:if="{{item.PayState ==1}}">购买时间:{{item.PayTime}}</view>
-            <view wx:elif="{{item.PayState ==0}}">剩余支付时间:{{item.RemainingTime}}</view>
-            <view wx:else></view>
-            <view wx:if="{{item.PayState ==1}}">已支付</view>
-            <view wx:elif="{{item.PayState ==0}}" class='red'>等待支付</view>
-            <view wx:else>过期</view>
+            <view class='Code' wx:if="{{item.PayState ==1}}">购买时间:{{item.PayTime}}</view>
+            <view class='Code' wx:elif="{{item.PayState ==0}}">剩余支付时间:{{item.RemainingTime}}</view>
+            <view class='Code' wx:else></view>
+            <view class='Code' wx:if="{{item.PayState ==1}}">已支付</view>
+            <view class='item_Cost' wx:elif="{{item.PayState ==0}}">等待支付</view>
+            <view class='Code' wx:else>过期</view>
           </view>
         </view>
       </view>

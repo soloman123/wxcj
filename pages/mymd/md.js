@@ -13,7 +13,7 @@ Page({
     list: '',
     deviceId: 1,
     isFromSearch: true,
-    PageIndex: 1,   // 设置加载的第几次，默认是第一次  
+    PageIndex: 1, // 设置加载的第几次，默认是第一次  
   },
 
   /**
@@ -36,18 +36,19 @@ Page({
 
 
   click_item: function (e) {
-    
-    if (this.data.list[e.currentTarget.dataset.index].PayState === 0){
+
+    // if (this.data.list[e.currentTarget.dataset.index].PayState === 0) {
+    //   wx.navigateTo({
+    //     url: '../pay/pay?retdata=' + JSON.stringify(this.data.list[e.currentTarget.dataset.index])
+    //   })
+    // } else {
       wx.navigateTo({
-        url: '../pay/pay?retdata=' + JSON.stringify(this.data.list[e.currentTarget.dataset.index])
+        url: '../lbxq/lbxq?PrizeId=' + this.data.list[e.currentTarget.dataset.index].PrizeId + "&icon=" +
+          this.data.list[e.currentTarget.dataset.index].Icon + "&name=" + this.data.list[e.currentTarget.dataset.index].Name
       })
-    }else{
-      wx.navigateTo({
-        url: '../lbxq/lbxq?PrizeId=' + this.data.list[e.currentTarget.dataset.index].PrizeId
-      })
-    }
-  
-    
+    // }
+
+
     // network.getData("UserProducts", data, this.doSuccess, this.doFail, 2);
   },
 
@@ -56,25 +57,27 @@ Page({
     wx.hideLoading();
     var that = this;
     switch (tpye) {
-      case 1: {
-        if (e.List.length > 0) {
-          let searchList = '';
-          that.data.isFromSearch ? searchList = e.List : searchList = that.data.list.concat(e.List)
-          that.setData({
-            retdata: e,
-            list: searchList,
-            PageIndex: that.data.PageIndex + 1,
-          })
-        } else {
-          wx.showToast({
-            title: '以无数据加载',
-            icon: 'none'
-          })
-          that.setData({
-            isFromSearch: true,
-          })
+      case 1:
+        {
+          if (e.List.length > 0) {
+            let searchList = '';
+            that.data.isFromSearch ? searchList = e.List : searchList = that.data.list.concat(e.List)
+            that.setData({
+              retdata: e,
+              list: searchList,
+              PageIndex: that.data.PageIndex + 1,
+            })
+          } else {
+            wx.showToast({
+              title: '以无数据加载',
+              icon: 'none'
+            })
+            that.setData({
+              isFromSearch: true,
+            })
+          }
         }
-      } break;
+        break;
     }
   },
   doFail: function () {

@@ -74,8 +74,7 @@ Page({
 
 
   pay_mit: function() {
-    console.log(33333);
-    console.log(app.globalData.openid);
+
     // this.data.phonenum= 1;
     if (this.data.phonenum == null) {
       wx.navigateTo({
@@ -99,7 +98,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    console.log('生命周期函数--监听页面显示');
   },
 
   /**

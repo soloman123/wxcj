@@ -17,13 +17,13 @@ Page({
     luckPosition: -1,
     list: '',
     images: '',
-
+    phonenum:'',
     images_back: '/images/lottery_box_bg.png',
     btnconfirm: '/images/dianjichoujiangd.png',
-    avatar_img: '/images/head.png',
+    avatar_img: '/images/user_img.png',
     headimg:'/images/head.png',
     hideModal: false,
-    phonenum: '未验证',
+  
     zhezhaoval: true,
     name: '姓名',
     retdata: null,
@@ -117,6 +117,7 @@ Page({
   doSuccess: function(e, type) {
     console.log(e)
     let that = this;
+    wx.hideLoading();
     switch (type) {
       case 1:
         {
@@ -126,7 +127,8 @@ Page({
           })
           var arr = new Array;
           this.data.images.forEach(function(value, index, arrSelf) {
-            arr.push(arrSelf[index].GiftBagPublishId);
+            // arr.push(arrSelf[index].GiftBagPublishId);
+            arr.push(3);
           })
           var data = {
             Id: that.data.deviceId,
@@ -168,6 +170,9 @@ Page({
   onLoad: function(options) {
 
     this.data.deviceId = '563fd56f11f0'; //options.deviceId
+    this.setData({
+      phonenum:app.globalData.phonenum,
+    })
     wx.getSetting({
       success: res => {
         if (res.authSetting['scope.userInfo']) {
@@ -198,6 +203,9 @@ Page({
     if (deviceid) {
       this.setData({
         zhezhaoval: false,
+      })
+      wx.showLoading({
+        title: '加载数据中...',
       })
       network.getData("GiftBagPool/" + this.data.deviceId, '', this.doSuccess, this.doFail, 1);
     } else {
@@ -359,10 +367,6 @@ Page({
     // }  
   },
 
-
-
-
-
   showModal: function() {
     var that = this;
     that.setData({
@@ -406,6 +410,12 @@ Page({
     this.setData({
       animationData: this.animation.export(),
     })
+  },
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    console.log('生命周期函数--监听页面显示');
   },
 
 })

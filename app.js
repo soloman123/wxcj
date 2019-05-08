@@ -34,7 +34,7 @@ App({
   globalData:{
     userinfo:null,
     openid:'',
-
+    phonenum: '未验证',
   }
 
 
