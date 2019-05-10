@@ -1,0 +1,122 @@
+<!--pages/wssj/sj.wxml-->
+
+<view class='top_bac'>
+  <view class='top_left'>
+    <image class='userinfo-avatar' src='{{avatar_img}}'></image>
+    <view class='top_left_height'>
+      <text class='top_left_font_size'>{{name}}</text>
+      <text class='top_left_phone_font_size'>手机 : {{phonenum}} </text>
+    </view>
+  </view>
+  <view class='top_right'>
+    <view class='top_right_height' bindtap='sjhx'>
+      <image class='dindan_icon' src='/images/icon_hx01_gray.png'></image>
+      <text class='userinfo_text'>核销</text>
+    </view>
+    <view class='top_right_height' bindtap='sjtc'>
+      <image class='dindan_icon' src='/images/icon_hx02_gray.png'></image>
+      <text class='userinfo_text'>提成</text>
+    </view>
+    <view class='top_right_height'>
+      <image class='dindan_icon' src='/images/icon_hx03_gray.png'></image>
+      <text class='userinfo_text'>个人中心</text>
+    </view>
+  </view>
+</view>
+
+
+<swiper current="{{currentData}}" class='swiper' style="height:600px;" duration="300" bindchange="bindchange">
+
+  <swiper-item catchtouchmove='catchTouchMove'>
+    <view class='swiper_hx'>
+      <view class='swiper_hx_bar'>
+        <view class='button_view_h_jlu' bindtap='item_hexiao'>
+          <text style="color:{{color}}">核销</text>
+        </view>
+        <view class='button_view_h_jlu' bindtap='item_hexiaojilu'>
+          <text style="color:{{color1}}">核销记录</text>
+        </view>
+      </view>
+    </view>
+    <swiper current="{{currenthxItemData}}" class='swiper' style="height:600px;" duration="300" bindchange="bindchange1">
+      <swiper-item catchtouchmove='catchTouchMove'>
+        <view class='swiper_hx_bar_saoma' bindtap='saoma'>
+          <view class='swiper_hx_bar_saoma_left'>
+            <image class='saoma_icon' src='/images/icon_scan.png'></image>
+            <view class='saoma_view'>
+              <text class='text_30'>扫码核销</text>
+              <text class='text_24'>扫描用户出示的核销码</text>
+            </view>
+          </view>
+          <image class='arrow_icon' src='/images/arrow.png'></image>
+        </view>
+        <view class='swiper_hx_bar_saoma_rg'>
+          <view class='swiper_hx_bar_saoma_left'>
+            <image class='saoma_icon' src='/images/icon_type.png'></image>
+            <view class='saoma_view'>
+              <text class='text_30'>手工核销</text>
+              <text class='text_24'>输入用户出示的核销码</text>
+            </view>
+          </view>
+          <input class='swiper_hx_bar_saoma_rg_input'></input>
+          <view class='button_view'>
+            <view class='button_' bindtap='submit'>
+              <text>提 交</text>
+            </view>
+          </view>
+
+        </view>
+      </swiper-item>
+      <swiper-item>
+        <scroll-view scroll-y='true'>
+          <view class='list_view'>
+            <block wx:for="{{num}}" wx:for-item="item" wx:key="index">
+              <view class='item'>
+                <view class='hexiaoma_view'>核销码</view>
+
+                <view class='he_view'>
+
+                  <view class='he_lin_view'>
+                    <view class='shenfenxinxi'>
+                      <image class='userinfo-avatar_112' src='{{avatar_img}}' mode='widthFix'></image>
+                      <view class='text_hg'>
+                        <view class='name_text_size'>111111</view>
+                        <view class='goumai_text_size'>111111</view>
+                      </view>
+                    </view>
+                    <view class='line'></view>
+
+                    <view class='chanpin_body'>
+                      <image class='chanpin_icon_112' src='{{avatar_img}}' mode='widthFix'></image>
+                      <view class='text_hg'>
+                        <view class='je'>
+                          <view class='chanpin_text_size'>111111</view>
+                          <view class='chanpin_text_size_24_h'>原价:222</view>
+                        </view>
+                        <view class='chanpin_text_size_24'>商家:</view>
+                      </view>
+                    </view>
+                  </view>
+
+                  <view class='next' bindtap='next'>
+                      <image class='next_img' src='/images/icon_next.png'></image>
+                  </view>
+                </view>
+
+
+              </view>
+            </block>
+          </view>
+        </scroll-view>
+      </swiper-item>
+    </swiper>
+
+
+
+
+
+  </swiper-item>
+  <swiper-item>
+    <view class='swiper_con'>welcome come to 热点</view>
+  </swiper-item>
+</swiper>

@@ -114,6 +114,18 @@ Page({
 
   },
 
+
+  mysj:function(){
+    let that = this;
+    setTimeout(function () {
+      wx.navigateTo({
+        url: '../wssj/sj?deviceId=' + that.data.deviceId + "&avatar_img=" + that.data.avatar_img+
+          "&name=" + that.data.name
+      })
+
+    }, 100);
+  },
+
   doSuccess: function(e, type) {
     console.log(e)
     let that = this;
@@ -169,6 +181,9 @@ Page({
    */
   onLoad: function(options) {
 
+
+    // image1 = [{ GiftBagId: 1, GiftBagPublishId: 1, Icon: "http://60.195.251.75:9800/content/images/1.png", order: 1 }]
+
     this.data.deviceId = '563fd56f11f0'; //options.deviceId
     this.setData({
       phonenum:app.globalData.phonenum,
@@ -210,6 +225,10 @@ Page({
       network.getData("GiftBagPool/" + this.data.deviceId, '', this.doSuccess, this.doFail, 1);
     } else {
 
+      wx.navigateTo({
+        url: '../qsye/qs?name=' + this.data.name
+      })
+   
     }
   },
 

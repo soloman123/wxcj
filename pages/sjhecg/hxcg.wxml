@@ -1,0 +1,48 @@
+<!--pages/sjhecg/hxcg.wxml-->
+<view>
+
+  <view class='body'>
+    <view class='chenggong_view'>
+      <image class='cg_icon' src='{{cgimg}}' mode='widthFix'></image>
+       <view class='chanpin_text_size_38_h'>{{status_text}}</view>
+    </view>
+
+    <view class='hexiao_title'>核销码:XXXXXXXXXXXX</view>
+    <view class='line'></view>
+    <view class='shenfenxinxi'>
+      <image class='userinfo-avatar' src='{{avatar_img}}' mode='widthFix'></image>
+      <view class='text_hg'>
+        <view class='name_text_size'>111111</view>
+        <view class='goumai_text_size'>111111</view>
+      </view>
+    </view>
+    <view class='line'></view>
+
+    <view class='chanpin_body'>
+      <image class='chanpin_icon' src='{{avatar_img}}' mode='widthFix'></image>
+      <view class='text_hg'>
+        <view class='je'>
+          <view class='chanpin_text_size'>111111</view>
+          <view class='chanpin_text_size_24_h'>原价:222</view>
+        </view>
+        <view class='chanpin_text_size_24'>商家:</view>
+        <view class='chanpin_text_size_24'>地址:</view>
+        <view class='chanpin_text_size_24'>电话:</view>
+      </view>
+    </view>
+
+    <view class='item_bottom'>
+      <view class='line1'></view>
+      <text class='item_tit_name_size1'>消费规则</text>
+      <view class='line1'></view>
+    </view>
+
+    <view class='pad_view'>
+      <text class='buttom_text_size_24'>111111111\n111111</text>
+    </view>
+  </view>
+
+  <view class='pay_view'>
+    <view class='quxiao_view'>关闭</view>
+  </view>
+</view>

@@ -1,5 +1,5 @@
 // pages/hexiao/hx.js
-
+var QRCode = require('../../utils/weapp-qrcode.js')
 const app = getApp()
 var network = require("../../utils/network.js")
 Page({
@@ -38,6 +38,16 @@ Page({
     wx.hideLoading();
     this.setData({
       item:e,
+    });
+
+    var qrcode = new QRCode('canvas', {
+      // usingIn: this,
+      text: this.data.item.ConsumptionCode,
+      width: 150,
+      height: 150,
+      colorDark: "#000000",
+      colorLight: "#ffffff",
+      correctLevel: QRCode.CorrectLevel.H,
     });
     console.log(this.data.item);
   },

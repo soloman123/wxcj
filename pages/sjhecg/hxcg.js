@@ -1,24 +1,34 @@
-// pages/qsye/qs.js
-const app = getApp()
+// pages/sjhecg/hxcg.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    name: '',
-    phonenum:'',
+    cgimg: '../../images/icon_hx01.png',
+    avatar_img: '../../images/user_img.png',
+    status_text:'1111',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      name: options.name,
-      phonenum: app.globalData.phonenum,
-    })
-
+    console.log(options)
+    var type = options.type;
+    
+    switch(type){
+      case '1':
+      this.setData({
+        status_text: '核销成功!',
+      })
+      break;
+      case '2':
+        this.setData({
+          status_text: '已核销!',
+        })
+      break;
+    }
   },
 
   /**

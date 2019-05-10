@@ -36,8 +36,8 @@
       <text class='text_size'>核 销 码：{{item.ConsumptionCode}}</text>
       <text class='text_size'>核销时间：{{item.ConsumptionTime}}</text>
 
-
-      <image class='qcode_img' src='{{item.ConsumptionCode}}' mode=''></image>
+      <canvas class='qcode_img' canvas-id='canvas' bindlongtap='save'></canvas>
+      <!-- <image class='qcode_img' src='{{item.ConsumptionCode}}' mode=''></image>-->
 
       <view class='item_bottom'>
         <view class='line1'></view>

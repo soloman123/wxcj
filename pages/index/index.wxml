@@ -17,7 +17,7 @@
         <image class='dindan_icon' src='/images/icon_center.png'></image>
         <text class='userinfo_text'>我的免单</text>
       </view>
-      <view class='top_right_height'>
+      <view class='top_right_height' bindtap='mysj'>
         <image class='dindan_icon' src='/images/icon_order.png'></image>
         <text class='userinfo_text'>商家中心</text>
       </view>

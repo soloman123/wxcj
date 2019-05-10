@@ -1,13 +1,18 @@
 {
   "pages": [
-    "pages/qsye/qs",
     "pages/index/index",
     "pages/lbxq/lbxq",
+    "pages/qsye/qs",
     "pages/mymd/md",
     "pages/hexiao/hx",
     "pages/bindphone/bind",
     "pages/zjjg/zjjg",
-    "pages/pay/pay"
+    "pages/pay/pay",
+    "pages/wssj/sj",
+    "pages/sjhx/sjhx",
+    "pages/grzx/grzx",
+    "pages/sjtc/sjtc",
+    "pages/sjhecg/hxcg"
   ],
   "window": {
     "backgroundTextStyle": "light",
