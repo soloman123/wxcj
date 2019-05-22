@@ -1,0 +1,109 @@
+<!--pages/sjtcjl/sjtcjl.wxml-->
+<!--pages/wssj/sj.wxml-->
+
+<view class='top_bac'>
+  <view class='top_left'>
+    <image class='userinfo-avatar' src='{{avatar_img}}'></image>
+    <view class='top_left_height'>
+      <text class='top_left_font_size'>{{name}}</text>
+      <text class='top_left_phone_font_size'>手机 : {{phonenum}} </text>
+    </view>
+  </view>
+  <view class='top_right'>
+    <view class='top_right_height' bindtap='sjhx'>
+
+      <image class='dindan_icon' src='/images/icon_hx01_gray.png' mode='widthFix'></image>
+      <text class='userinfo_text'>核销</text>
+    </view>
+    <view class='top_right_height' bindtap='sjtc'>
+
+      <image class='dindan_icon' src='/images/icon_hx02.png' mode='widthFix'></image>
+      <text class='userinfo_text'>提成</text>
+    </view>
+    <view class='top_right_height'>
+      <image class='dindan_icon' src='/images/icon_hx03_gray.png' mode='widthFix'></image>
+      <text class='userinfo_text'>个人中心</text>
+    </view>
+  </view>
+</view>
+<view class='tixian_view'>
+  <text class='tixian_text'>可用余额:{{money}}元</text>
+  <view class='tixian_text_h' bindtap='sqtx'>申请提现</view>
+</view>
+<view class='swiper_hx'>
+  <view class='swiper_hx_bar'>
+    <view class='button_view_h_jlu' bindtap='libaoxiaoshou'>
+      <text style="color:{{color2}}">礼包销售</text>
+    </view>
+    <view class='button_view_h_jlu' bindtap='tixianshenqing'>
+      <text style="color:{{color3}}">提现记录</text>
+    </view>
+  </view>
+</view>
+
+<swiper current="{{currentData}}" class='swiper' style="height:{{windowHeight-220}}px" duration="300" bindchange="bindchange">
+  <swiper-item catchtouchmove='catchTouchMove'>
+    <scroll-view scroll-y='true' style='height:100%;' bindscrolltolower="loadMore2">
+      <view class='list_view'>
+        <block wx:for="{{num}}" wx:for-item="item" wx:key="index">
+          <view class='libao_xiaoshou_item'>
+            <view class='tixian_top_view'>
+              <view class='text_hg'>
+
+                <view class='tx_h_v'>
+                  <view class='tixian_text_size'>{{spname}}</view>
+                  <view class='tixian_text_size_24'>单号:xxxxxx</view>
+                </view>
+                <view class='tx_h_v'>
+                  <view class='tixian_text_size_24'>销售金额{{}}元</view>
+                  <view class='tixian_text_size_24'>提成金额:{{}}元</view>
+                </view>
+              </view>
+            </view>
+            <view class='line'></view>
+            <view class='chanpin_body'>
+              <image class='chanpin_icon_112' src='{{avatar_img}}' mode='widthFix'></image>
+              <view class='text_hg'>
+                <view class='je'>
+                  <view class='chanpin_text_size'>111111</view>
+                </view>
+                <view class='chanpin_text_size_24'>购买时间:</view>
+              </view>
+            </view>
+          </view>
+        </block>
+
+      </view>
+    </scroll-view>
+
+
+
+  </swiper-item>
+      <!-- <swiper-item>
+      <scroll-view scroll-y='true' style='height:100%;' bindscrolltolower="loadMore1">
+        <view class='list_view'>
+          <block wx:for="{{num}}" wx:for-item="item" wx:key="index">
+            <view class='libao_tcjl_item'>
+
+              <view class='txjl_item_m'>
+                <view class='tx_h_item_v'>
+                  <view class='tixian_text_size_24'>单号:xxxxxxxxxx</view>
+                  <view class='tixian_text_size_24'>日期</view>
+                </view>
+                <view class='tixian_text_size_24'>金额:</view>
+                <view class='tixian_text_size_24'>提现到:</view>
+                <view class='tixian_text_size_24'>收款人:</view>
+                <view class='tx_h_item_v'>
+                  <view class='tixian_text_size_24'>收款账号:</view>
+
+                  <view class='tixian_text_h_status'>提现成功</view>
+                </view>
+              </view>
+
+            </view>
+          </block>
+
+        </view>
+      </scroll-view>
+    </swiper-item> -->
+</swiper>

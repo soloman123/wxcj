@@ -1,2 +1,59 @@
 <!--pages/sjtc/sjtc.wxml-->
-<text>pages/sjtc/sjtc.wxml</text>
+
+
+<view>
+  <view class='top'>可用余额</view>
+  <view class='tx_view'>申请提现</view>
+  <view class='back'>
+    <view class='line'></view>
+  </view>
+  <view class='txje'>提现金额</view>
+  <view class='back'>
+    <view class='line'></view>
+  </view>
+  <view class='txd_view'>
+    <view>提现到</view>
+    <radio-group bindchange="checkboxChange">
+      <label class="radio" wx:for="{{items}}">
+        <radio value="{{item.name}}" checked="{{item.checked}}" /> {{item.value}}
+      </label>
+    </radio-group>
+
+
+  </view>
+
+  <view class='back'>
+    <view class='line'></view>
+  </view>
+  <view class='txje'>银 行</view>
+
+  <view class='back'>
+    <view class='line'></view>
+  </view>
+  <view class='txje'>开户行</view>
+
+  <view class='back'>
+    <view class='line'></view>
+  </view>
+  <view class='txje'>收款人</view>
+  <view class='back'>
+    <view class='line'></view>
+  </view>
+  <view class='txje'>收款账号</view>
+  <view class='back'>
+    <view class='line'></view>
+  </view>
+
+  <view class='txd_view'>
+    <view>短信验证码</view>
+    <view class='getcode'>获取验证码</view>
+  </view>
+  <view class='back'>
+    <view class='line'></view>
+  </view>
+  <view class='dxxx'>收款账号</view>
+  <view class='sub_view'>
+    <view class='submit'>提交</view>
+  </view>
+
+</view>

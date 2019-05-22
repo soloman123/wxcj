@@ -12,7 +12,8 @@
     "pages/sjhx/sjhx",
     "pages/grzx/grzx",
     "pages/sjtc/sjtc",
-    "pages/sjhecg/hxcg"
+    "pages/sjhecg/hxcg",
+    "pages/sjtcjl/sjtcjl"
   ],
   "window": {
     "backgroundTextStyle": "light",

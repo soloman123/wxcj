@@ -42,7 +42,13 @@ Page({
   },
   getcode: function (e) {
     if (this.ismobile(this.data.phone)){
-      network.getData("MobileValidCode/" + this.data.phone, '', this.doSuccess, this.doFail, 1);
+
+      var data ={
+        Mobile: this.data.phone,
+        Type: 0,
+
+      }
+      network.getData("MobileValidCode/", data, this.doSuccess, this.doFail, 1);
  
     }
   },
@@ -51,29 +57,52 @@ Page({
     console.log(e);
     switch (type) {
       case 1: {
-        if (e.Code === -1) {
+        if (e.Code < 0) {
           wx.showToast({
             title: e.Message,
             icon: 'none'
           })
 
         } else {
-          console.log(111111);
           this.verification();
         }
-
       } break;
       case 2:{
         if (e === false) {
-          
+          wx.showToast({
+            title: '绑定失败',
+            icon: 'none'
+          })
         }else{
-
+          setTimeout(function(){
+            wx.showToast({
+              title: '绑定成功',
+              icon: 'none'
+            },3900)
+            wx.navigateBack({
+              delta: 1
+            })
+          },4000)
+     
+        }
+      }break;
+      case 3:{
+        if (e.Code < 0) {
+          wx.showToast({
+            title: e.Message,
+            icon: 'none'
+          })
         }
       }break;
     }
   },
   yuyin_click: function () {
+    var data = {
+      Mobile: this.data.phone,
+      Type: 1,
 
+    }
+    network.getData("MobileValidCode/", data, this.doSuccess, this.doFail, 3);
   },
   code_input: function (e) {
     this.setData({
@@ -90,7 +119,7 @@ Page({
       return;
     } else if (this.ismobile(this.data.phone)){
      let data = {
-        'OpenId': 11,
+       'OpenId': app.globalData.openid,
         'Mobile': this.data.phone,
         'Code': this.data.code,
       }

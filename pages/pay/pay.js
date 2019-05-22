@@ -11,10 +11,6 @@ Page({
     item: '',
   },
 
-
-
-
-
   pay_mit: function () {
   
     if (!util.isMobile(app.globalData.phone)) {

@@ -10,22 +10,24 @@
   </view>
   <view class='top_right'>
     <view class='top_right_height' bindtap='sjhx'>
-      <image class='dindan_icon' src='/images/icon_hx01_gray.png'></image>
+      <image wx:if='{{currentData == 0}}' class='dindan_icon' src='/images/icon_hx01.png' mode='widthFix'></image>
+      <image wx:elif='{{currentData == 1}}' class='dindan_icon' src='/images/icon_hx01_gray.png' mode='widthFix'></image>
       <text class='userinfo_text'>核销</text>
     </view>
     <view class='top_right_height' bindtap='sjtc'>
-      <image class='dindan_icon' src='/images/icon_hx02_gray.png'></image>
+      <image wx:if='{{currentData == 0}}' class='dindan_icon' src='/images/icon_hx02_gray.png' mode='widthFix'></image>
+      <image wx:if='{{currentData == 1}}' class='dindan_icon' src='/images/icon_hx02.png' mode='widthFix'></image>
       <text class='userinfo_text'>提成</text>
     </view>
     <view class='top_right_height'>
-      <image class='dindan_icon' src='/images/icon_hx03_gray.png'></image>
+      <image class='dindan_icon' src='/images/icon_hx03_gray.png' mode='widthFix'></image>
       <text class='userinfo_text'>个人中心</text>
     </view>
   </view>
 </view>
 
 
-<swiper current="{{currentData}}" class='swiper' style="height:600px;" duration="300" bindchange="bindchange">
+<swiper current="{{currentData}}" class='swiper' style="height:{{windowHeight}}px" duration="300" bindchange="bindchange">
 
   <swiper-item catchtouchmove='catchTouchMove'>
     <view class='swiper_hx'>
@@ -38,7 +40,7 @@
         </view>
       </view>
     </view>
-    <swiper current="{{currenthxItemData}}" class='swiper' style="height:600px;" duration="300" bindchange="bindchange1">
+    <swiper current="{{currenthxItemData}}" class='swiper' style="height:{{styh}}%;" duration="300" bindchange="bindchange1">
       <swiper-item catchtouchmove='catchTouchMove'>
         <view class='swiper_hx_bar_saoma' bindtap='saoma'>
           <view class='swiper_hx_bar_saoma_left'>
@@ -67,46 +69,42 @@
 
         </view>
       </swiper-item>
-      <swiper-item>
-        <scroll-view scroll-y='true'>
+      <swiper-item catchtouchmove='catchTouchMove'>
+        <scroll-view scroll-y='true' bindscrolltolower="loadMore" lower-threshold="0">
           <view class='list_view'>
-            <block wx:for="{{num}}" wx:for-item="item" wx:key="index">
+            <block wx:for="{{hexiaolist}}" wx:for-item="item" wx:key="index">
               <view class='item'>
-                <view class='hexiaoma_view'>核销码</view>
-
+                <view class='hexiaoma_view'>核销码{{item.ConsumptionCode}}</view>
                 <view class='he_view'>
-
                   <view class='he_lin_view'>
                     <view class='shenfenxinxi'>
-                      <image class='userinfo-avatar_112' src='{{avatar_img}}' mode='widthFix'></image>
+                      <image class='userinfo-avatar_112' src='{{item.UserIcon}}' mode='widthFix'></image>
                       <view class='text_hg'>
-                        <view class='name_text_size'>111111</view>
-                        <view class='goumai_text_size'>111111</view>
+                        <view class='name_text_size'>{{item.Nickname}}</view>
+                        <view class='goumai_text_size'>核销时间{{item.ConsumptionTime}}</view>
                       </view>
                     </view>
                     <view class='line'></view>
-
                     <view class='chanpin_body'>
-                      <image class='chanpin_icon_112' src='{{avatar_img}}' mode='widthFix'></image>
+                      <image class='chanpin_icon_112' src='{{item.ProductIcon}}' mode='widthFix'></image>
                       <view class='text_hg'>
                         <view class='je'>
-                          <view class='chanpin_text_size'>111111</view>
-                          <view class='chanpin_text_size_24_h'>原价:222</view>
+                          <view class='chanpin_text_size'>{{item.ProductName}}</view>
+                          <view class='chanpin_text_size_24_h'>原价:{{item.Price}}</view>
                         </view>
-                        <view class='chanpin_text_size_24'>商家:</view>
+                        <view class='chanpin_text_size_24'>礼包单号:{{item.Code}}</view>
                       </view>
                     </view>
                   </view>
-
                   <view class='next' bindtap='next'>
-                      <image class='next_img' src='/images/icon_next.png'></image>
+                    <image class='next_img' src='/images/icon_next.png'></image>
                   </view>
                 </view>
-
-
               </view>
             </block>
+
           </view>
+
         </scroll-view>
       </swiper-item>
     </swiper>
@@ -116,7 +114,85 @@
 
 
   </swiper-item>
-  <swiper-item>
-    <view class='swiper_con'>welcome come to 热点</view>
+  <swiper-item catchtouchmove='catchTouchMove'>
+    <view class='tixian_view'>
+      <text class='tixian_text'>可用余额:{{money}}元</text>
+      <view class='tixian_text_h' bindtap='sqtx'>申请提现</view>
+    </view>
+    <view class='swiper_hx'>
+      <view class='swiper_hx_bar'>
+        <view class='button_view_h_jlu' bindtap='libaoxiaoshou'>
+          <text style="color:{{color2}}">礼包销售</text>
+        </view>
+        <view class='button_view_h_jlu' bindtap='tixianshenqing'>
+          <text style="color:{{color3}}">提现记录</text>
+        </view>
+      </view>
+    </view>
+
+
+    <swiper current="{{currenttxItemData}}" class='swiper' style="height:{{styh1}}%;" duration="300" bindchange="bindchange2">
+      <swiper-item catchtouchmove='catchTouchMove'>
+        <scroll-view scroll-y='true' style='height:100%;' bindscrolltolower="loadMore2" lower-threshold="0">
+          <view class='list_view'>
+            <block wx:for="{{num}}" wx:for-item="item" wx:key="index">
+              <view class='libao_xiaoshou_item'>
+                <view class='tixian_top_view'>
+                  <view class='text_hg'>
+
+                    <view class='tx_h_v'>
+                      <view class='tixian_text_size'>{{spname}}</view>
+                      <view class='tixian_text_size_24'>单号:xxxxxx</view>
+                    </view>
+                    <view class='tx_h_v'>
+                      <view class='tixian_text_size_24'>销售金额{{}}元</view>
+                      <view class='tixian_text_size_24'>提成金额:{{}}元</view>
+                    </view>
+                  </view>
+                </view>
+                <view class='line'></view>
+                <view class='chanpin_body'>
+                  <image class='chanpin_icon_112' src='{{avatar_img}}' mode='widthFix'></image>
+                  <view class='text_hg'>
+                    <view class='je'>
+                      <view class='chanpin_text_size'>111111</view>
+                    </view>
+                    <view class='chanpin_text_size_24'>购买时间:</view>
+                  </view>
+                </view>
+              </view>
+            </block>
+
+          </view>
+        </scroll-view>
+      </swiper-item>
+      <swiper-item catchtouchmove='catchTouchMove'>
+        <scroll-view scroll-y='true' style='height:100%;' bindscrolltolower="loadMore1" lower-threshold="0">
+          <view class='list_view'>
+            <block wx:for="{{num}}" wx:for-item="item" wx:key="index">
+              <view class='libao_tcjl_item'>
+
+                <view class='txjl_item_m'>
+                  <view class='tx_h_item_v'>
+                    <view class='tixian_text_size_24'>单号:xxxxxxxxxx</view>
+                    <view class='tixian_text_size_24'>日期</view>
+                  </view>
+                  <view class='tixian_text_size_24'>金额:</view>
+                  <view class='tixian_text_size_24'>提现到:</view>
+                  <view class='tixian_text_size_24'>收款人:</view>
+                  <view class='tx_h_item_v'>
+                    <view class='tixian_text_size_24'>收款账号:</view>
+
+                    <view class='tixian_text_h_status'>提现成功</view>
+                  </view>
+                </view>
+
+              </view>
+            </block>
+
+          </view>
+        </scroll-view>
+      </swiper-item>
+    </swiper>
   </swiper-item>
-</swiper>
+</swiper> 

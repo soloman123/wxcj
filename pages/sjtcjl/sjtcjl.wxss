@@ -1,4 +1,5 @@
-/* pages/wssj/sj.wxss */
+/* pages/sjtcjl/sjtcjl.wxss */
+
 
 page {
   width: 100%;
@@ -7,7 +8,9 @@ page {
   overflow-y: hidden;
 }
 
+
 .top_bac {
+
   width: 100%;
   display: flex;
   padding: 20rpx;
@@ -16,6 +19,8 @@ page {
   flex-direction: row;
   justify-content: space-between;
 }
+
+
 
 .fenge {
   height: 16rpx;
@@ -271,9 +276,9 @@ page {
   flex-direction: column;
 }
 
-swiper-item {
-  overflow: scroll;
-}
+
+
+
 
 .item {
   height: 383rpx;
@@ -566,23 +571,4 @@ scroll-view {
 
 .zw {
   height: 300rpx;
-}
-
-.text_load {
-  display: flex;
-  align-items: center;
-  background: #fff;
-  justify-content: center;
-  justify-items: center;
-  width: 700rpx;
-  height: 100rpx;
-  border-color: #dfdfdf;
-  border-style: solid;
-  border-top-width: 1px;
-  border-right-width: 1px;
-  border-bottom-width: 1px;
-  border-left-width: 1px;
-  border-radius: 20rpx;
-  background: #fff;
-  margin-bottom: 20rpx;
 }

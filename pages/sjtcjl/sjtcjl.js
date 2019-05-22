@@ -1,22 +1,46 @@
-// pages/sjtc/sjtc.js
+// pages/sjtcjl/sjtcjl.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    items: [
-      { name: 'zfb', value: '支付宝' },
-      { name: 'yhk', value: '银行卡', checked: 'true' },
-
-    ]
+    color: '#ff6600',
+    color1: '#999999',
+    color2: '#ff6600',
+    color3: '#999999',
+    name: '',
+    avatar_img: '',
+    num:6,
+    windowHeight: '',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.getSystemInfo({
+      success: (res) => {
+        let windowHeight = res.windowHeight
+        console.log(res.model.indexOf('iPhone X'))
+        if (res.model.indexOf('iPhone X') >= 0) {
 
+          this.setData({
+            windowHeight: windowHeight,
+         
+          })
+
+
+        }
+        this.setData({
+          windowHeight: windowHeight,
+        })
+      }
+    })
+    this.setData({
+      name: options.name,
+      avatar_img: options.avatar_img,
+    })
   },
 
   /**

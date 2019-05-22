@@ -1,4 +1,6 @@
 //app.js
+
+
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -12,18 +14,20 @@ App({
      
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        console.log(res);
+      
         var that = this;
-        var str ='';
+        var str ='https://api.haoban173.com/wxprizeapi/Login/'+res.code;
         wx.request({
           url: str,
-          header: {
-            'content-type': 'application/json'
-          },
+          // header: {
+          //   'content-type': 'application/json'
+          // },
+
           success: function (res) {
+            console.log(res);
             that.globalData.openid = res.data.openid //返回openid
           },fail(e){
-            that.globalData.openid =1; //返回openid
+            that.globalData.openid =null; //返回openid
           }
         })
       console.log(str);
@@ -33,7 +37,7 @@ App({
   },
   globalData:{
     userinfo:null,
-    openid:'',
+    openid:null,
     phonenum: '未验证',
   }
 

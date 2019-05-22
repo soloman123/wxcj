@@ -17,13 +17,13 @@ Page({
     luckPosition: -1,
     list: '',
     images: '',
-    phonenum:'',
+    phonenum: '',
     images_back: '/images/lottery_box_bg.png',
     btnconfirm: '/images/dianjichoujiangd.png',
     avatar_img: '/images/user_img.png',
-    headimg:'/images/head.png',
+    headimg: '/images/head.png',
     hideModal: false,
-  
+
     zhezhaoval: true,
     name: '姓名',
     retdata: null,
@@ -41,7 +41,7 @@ Page({
 
 
 
-  submit: function() {
+  submit: function () {
     if (this.data.one === null,
       this.data.two === null,
       this.data.three === null,
@@ -60,7 +60,7 @@ Page({
     network.getData("PrizeCode/", data, this.doSuccess, this.doFail, 3);
   },
 
-  one: function(e) {
+  one: function (e) {
 
     this.setData({
       one: e.detail.value,
@@ -71,7 +71,7 @@ Page({
     })
   },
 
-  two: function(e) {
+  two: function (e) {
     this.setData({
       two: e.detail.value,
       inputShowed1: false,
@@ -80,7 +80,7 @@ Page({
       inputShowed4: false,
     })
   },
-  three: function(e) {
+  three: function (e) {
     this.setData({
       three: e.detail.value,
       inputShowed1: false,
@@ -89,7 +89,7 @@ Page({
       inputShowed4: true,
     })
   },
-  four: function(e) {
+  four: function (e) {
     this.setData({
       four: e.detail.value,
       inputShowed1: false,
@@ -99,34 +99,38 @@ Page({
     })
   },
 
-  mymd:function(){
-    if (this.data.zhezhaoval ===false){
-        return;
-      }
-      let that = this;
-      setTimeout(function(){
-        wx.navigateTo({
-          url: '../mymd/md?deviceId=' + that.data.deviceId
-        })
+  mymd: function () {
+    if (this.data.zhezhaoval == false || this.data.luckPosition > 0) {
+      return;
+    }
+    let that = this;
+    setTimeout(function () {
+      wx.navigateTo({
+        url: '../mymd/md?deviceId=' + that.data.deviceId
+      })
 
-      },100);
-     
+    }, 100);
+
 
   },
 
 
-  mysj:function(){
+  mysj: function () {
+    console.log(this.data.zhezhaoval == false );
+    if (this.data.zhezhaoval === false || this.data.luckPosition > 0) {
+      return;
+    }
     let that = this;
     setTimeout(function () {
       wx.navigateTo({
-        url: '../wssj/sj?deviceId=' + that.data.deviceId + "&avatar_img=" + that.data.avatar_img+
+        url: '../wssj/sj?deviceId=' + that.data.deviceId + "&avatar_img=" + that.data.avatar_img +
           "&name=" + that.data.name
       })
 
     }, 100);
   },
 
-  doSuccess: function(e, type) {
+  doSuccess: function (e, type) {
     console.log(e)
     let that = this;
     wx.hideLoading();
@@ -137,34 +141,42 @@ Page({
             images: e.Images,
             list: e.Description,
           })
-          var arr = new Array;
-          this.data.images.forEach(function(value, index, arrSelf) {
-            // arr.push(arrSelf[index].GiftBagPublishId);
-            arr.push(3);
-          })
-          var data = {
-            Id: that.data.deviceId,
-            GiftBagPublishIds: arr,
-          }
-          console.log(data);
-          network.request("Prize/", data, this.doSuccess, this.doFail, 2);
+
         }
         break;
       case 2:
         {
+          if (e.Code < 0) {
+            wx.showModal({
+              title: '接口返回错误',
+              content: e.Message,
+              showCancel: false,
+            })
+            return;
+          }
           this.setData({
             luckPosition: e - 1,
             inputShowed1: true,
+            zhezhaoval: true,
           })
+          this.clickLuck();
         }
         break;
       case 3:
         {
           if (e === true) {
-            this.clickLuck();
-            this.setData({
-              zhezhaoval: true,
+            var arr = new Array;
+            this.data.images.forEach(function (value, index, arrSelf) {
+              // arr.push(arrSelf[index].GiftBagPublishId);
+              arr.push(3);
             })
+            var data = {
+              Id: that.data.deviceId,
+              GiftBagPublishIds: arr,
+              openid: app.globalData.openid,
+            }
+            console.log(data);
+            network.request("Prize/", data, this.doSuccess, this.doFail, 2);
           } else {
 
           }
@@ -173,20 +185,20 @@ Page({
     }
 
   },
-  doFail: function(e) {
+  doFail: function (e) {
     wx.hideLoading();
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
 
 
     // image1 = [{ GiftBagId: 1, GiftBagPublishId: 1, Icon: "http://60.195.251.75:9800/content/images/1.png", order: 1 }]
 
     this.data.deviceId = '563fd56f11f0'; //options.deviceId
     this.setData({
-      phonenum:app.globalData.phonenum,
+      phonenum: app.globalData.phonenum,
     })
     wx.getSetting({
       success: res => {
@@ -214,7 +226,7 @@ Page({
 
   },
 
-  jump: function(deviceid) {
+  jump: function (deviceid) {
     if (deviceid) {
       this.setData({
         zhezhaoval: false,
@@ -225,14 +237,14 @@ Page({
       network.getData("GiftBagPool/" + this.data.deviceId, '', this.doSuccess, this.doFail, 1);
     } else {
 
-      wx.navigateTo({
+      wx.redirectTo({
         url: '../qsye/qs?name=' + this.data.name
       })
-   
+
     }
   },
 
-  getUserInfo: function(res) {
+  getUserInfo: function (res) {
 
     if (res.detail.errMsg === 'getUserInfo:fail auth deny') {
 
@@ -243,14 +255,21 @@ Page({
         name: res.detail.userInfo.nickName,
         avatar_img: res.detail.userInfo.avatarUrl,
       })
-      this.jump(this.data.deviceId)
+      console.log(app.globalData.openid)
+      if (app.globalData.openid == 'undefined' || app.globalData.openid == null) {
+        console.log('app.globalData.openid=======null')
+        // this.jump('');
+      } else {
+        this.jump(this.data.deviceId)
+      }
+
     }
 
   },
 
 
   //点击抽奖按钮
-  clickLuck: function() {
+  clickLuck: function () {
 
     var e = this;
     console.log(e.data.luckPosition);
@@ -262,12 +281,22 @@ Page({
       })
       return;
     }
+
+
+
+
+
+
+
+
+
+
     //清空计时器
     clearInterval(interval);
     var index = 0;
 
     //循环设置每一项的透明度
-    interval = setInterval(function() {
+    interval = setInterval(function () {
       if (index > 7) {
         index = 0;
         e.data.color[7] = 0.5
@@ -283,21 +312,14 @@ Page({
 
     //模拟网络请求时间  设为两秒
     var stoptime = 2000;
-    setTimeout(function() {
+    setTimeout(function () {
       e.stop(e.data.luckPosition);
     }, stoptime)
 
   },
 
-  //也可以写成点击按钮停止抽奖
-  // clickStop:function(){
-  //   var stoptime = 2000;
-  //   setTimeout(function () {
-  //     e.stop(1);
-  //   }, stoptime)
-  // },
 
-  stop: function(which) {
+  stop: function (which) {
     var e = this;
     //清空计数器
     clearInterval(interval);
@@ -322,11 +344,11 @@ Page({
    * time：时间标记
    * splittime：每次增加的时间 值越大减速越快
    */
-  stopLuck: function(which, index, time, splittime) {
+  stopLuck: function (which, index, time, splittime) {
     var e = this;
     //值越大出现中奖结果后减速时间越长
     var color = e.data.color;
-    setTimeout(function() {
+    setTimeout(function () {
       //重置前一个位置
       if (index > 7) {
         index = 0;
@@ -349,16 +371,25 @@ Page({
         index++;
         e.stopLuck(which, index, time, splittime);
       } else {
+        e.setData({
+          luckPosition:-1
+        })
         //1秒后显示弹窗
-        setTimeout(function() {
+        setTimeout(function () {
           if (e.data.images[which].GiftBagPublishId > 0) {
             //中奖
             wx.navigateTo({
-              url: '../zjjg/zjjg?deviceId=' + e.data.deviceId + '&GiftBagPublishId=' + e.data.images[which].GiftBagPublishId 
+              url: '../zjjg/zjjg?deviceId=' + e.data.deviceId + '&GiftBagPublishId=' + e.data.images[which].GiftBagPublishId
             })
           } else {
             //中奖
-
+            wx.showToast({
+              title: '未中奖',
+              icon: 'none'
+            })
+            wx.redirectTo({
+              url: '../qsye/qs?name=' + e.data.name
+            })
           }
         }, 1000);
       }
@@ -366,11 +397,11 @@ Page({
 
   },
   //进入页面时缓慢切换
-  loadAnimation: function() {
+  loadAnimation: function () {
     var e = this;
     var index = 0;
     // if (interval == null){
-    interval = setInterval(function() {
+    interval = setInterval(function () {
       if (index > 7) {
         index = 0;
         e.data.color[7] = 0.5
@@ -386,7 +417,7 @@ Page({
     // }  
   },
 
-  showModal: function() {
+  showModal: function () {
     var that = this;
     that.setData({
       hideModal: false
@@ -396,13 +427,13 @@ Page({
       timingFunction: 'ease', //动画的效果 默认值是linear 
     })
     this.animation = animation
-    setTimeout(function() {
+    setTimeout(function () {
       that.fadeIn(); //调用显示动画 
     }, 200)
   },
 
   // 隐藏遮罩层 
-  hideModal: function() {
+  hideModal: function () {
     var that = this;
     var animation = wx.createAnimation({
       duration: 800, //动画的持续时间 默认400ms 数值越大，动画越慢 数值越小，动画越快 
@@ -410,7 +441,7 @@ Page({
     })
     this.animation = animation
     that.fadeDown(); //调用隐藏动画 
-    setTimeout(function() {
+    setTimeout(function () {
       that.setData({
         hideModal: true
       })
@@ -418,13 +449,13 @@ Page({
   },
 
   //动画集 
-  fadeIn: function() {
+  fadeIn: function () {
     this.animation.translateY(0).step()
     this.setData({
       animationData: this.animation.export() //动画实例的export方法导出动画数据传递给组件的animation属性 
     })
   },
-  fadeDown: function() {
+  fadeDown: function () {
     this.animation.translateY(300).step()
     this.setData({
       animationData: this.animation.export(),
