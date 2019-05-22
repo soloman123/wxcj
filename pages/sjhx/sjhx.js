@@ -1,4 +1,6 @@
 // pages/sjhx/sjhx.js
+var network = require("../../utils/network.js")
+const app = getApp()
 Page({
 
   /**
@@ -6,80 +8,128 @@ Page({
    */
   data: {
     avatar_img: '../../images/user_img.png',
+    ConsumptionCode: '',
+    Consumption: ''
   },
 
-  queding:function(){
-    wx.navigateTo({
-      url: '../sjhecg/hxcg?type=1'
+  queding: function() {
+    let data = {
+      MerchantOpenId: app.globalData.openid,
+      ConsumptionCode: this.data.ConsumptionCode,
+    }
+    network.request("Consumption/", data, this.doSuccess, this.doFail, 2)
+
+  },
+
+  quxiao: function() {
+    wx.navigateBack({
+      delta:1
     })
-  },
-
-  quxiao:function(){
-      wx.showModal({
-        title: '核销码无效!',
-        content: '请核实您扫描或输入的核销码是否正确.',
-        confirmText:'知道了',
-        showCancel:false,
-        success(e){
-
-        }
-
-      })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
+    wx.showLoading({
+      title: '加载中...',
+    })
+    this.setData({
+      ConsumptionCode: options.code,
+    })
+
+    network.getData("Consumption/" + options.code, '', this.doSuccess, this.doFail, 1);
 
   },
+  doSuccess: function(res, type) {
+    console.log(res)
+    wx.hideLoading();
+    switch (type) {
+      case 1:
+      if(res){
+        this.setData({
+          Consumption: res,
+        })
+      }else{
+        wx.showModal({
+          title: '服务器返回错误信息',
+          content: '核销码不正确,请认真填写核销码',
+          showCancel:false,
+          success(res){
+            wx.navigateBack({
+              delta: 1
+            })
+          }
+        })
+      }
+   
+        break;
+      case 2:
+        if (res.Code < 0) {
+          wx.showModal({
+            title: '服务器返回错误',
+            content: res.Message,
+            showCancel:false,
+            confirmText: '知道了',
+          })
+        } else {
+          wx.navigateTo({
+            url: '../sjhecg/hxcg?type=1'
+          })
+        }
+        break
+    }
 
+  },
+  doFail: function(res) {
+
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })

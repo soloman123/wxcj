@@ -12,6 +12,7 @@ Page({
  
     retdata: null,
     list: '',
+    PrizeId:'',
     deviceId: 1,
     isFromSearch: true,
     PageIndex: 1, // 设置加载的第几次，默认是第一次  
@@ -68,7 +69,7 @@ Page({
   onLoad: function(options) {
     this.data.deviceId = options.deviceId
     this.data.GiftBagPublishId = options.GiftBagPublishId;
-
+    this.data.PrizeId = options.PrizeId;
     this.load();
   },
 
@@ -76,13 +77,13 @@ Page({
   pay_mit: function() {
 
     // this.data.phonenum= 1;
-    if (!util.isMobile(app.globalData.phone)) {
+    if (!util.isMobile(app.globalData.phonenum)) {
       wx.navigateTo({
         url: '../bindphone/bind'
       })
     }else{
-      wx.navigateTo({
-        url: '../pay/pay?retdata='+JSON.stringify(this.data.retdata)
+      wx.redirectTo({
+        url: '../pay/pay?retdata=' + JSON.stringify(this.data.retdata) + "&PrizeId=" + this.data.PrizeId + "&deviceId=" + this.data.deviceId
       })
     }
   },

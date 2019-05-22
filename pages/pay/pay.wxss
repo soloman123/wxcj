@@ -3,7 +3,13 @@
 page {
   width: 100%;
   overflow-x: hidden;
-  background: #dbdbdb;
+  background: #dedede;
+
+}
+
+.back{
+    width: 100%;
+  overflow-x: hidden;
 }
 
 .list_view {
@@ -144,6 +150,8 @@ page {
   margin-left: 30rpx;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
+  justify-items: center
 }
 
 
@@ -158,4 +166,7 @@ page {
   margin-right: 20rpx;
   width: 60rpx;
   height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

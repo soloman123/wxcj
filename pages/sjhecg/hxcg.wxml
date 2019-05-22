@@ -7,27 +7,27 @@
        <view class='chanpin_text_size_38_h'>{{status_text}}</view>
     </view>
 
-    <view class='hexiao_title'>核销码:XXXXXXXXXXXX</view>
+    <view class='hexiao_title'>核销码:{{retdata.ConsumptionCode}}</view>
     <view class='line'></view>
     <view class='shenfenxinxi'>
-      <image class='userinfo-avatar' src='{{avatar_img}}' mode='widthFix'></image>
+      <image class='userinfo-avatar' src='{{retdata.UserIcon}}' mode='widthFix'></image>
       <view class='text_hg'>
-        <view class='name_text_size'>111111</view>
-        <view class='goumai_text_size'>111111</view>
+        <view class='name_text_size'>{{retdata.Nickname}}</view>
+        <view class='goumai_text_size'>{{retdata.PayTime}}</view>
       </view>
     </view>
     <view class='line'></view>
 
     <view class='chanpin_body'>
-      <image class='chanpin_icon' src='{{avatar_img}}' mode='widthFix'></image>
+      <image class='chanpin_icon' src='{{retdata.ProductIcon}}' mode='widthFix'></image>
       <view class='text_hg'>
         <view class='je'>
-          <view class='chanpin_text_size'>111111</view>
-          <view class='chanpin_text_size_24_h'>原价:222</view>
+          <view class='chanpin_text_size'>{{retdata.ProductName}}</view>
+          <view class='chanpin_text_size_24_h'>原价:{{retdata.Price}}</view>
         </view>
-        <view class='chanpin_text_size_24'>商家:</view>
-        <view class='chanpin_text_size_24'>地址:</view>
-        <view class='chanpin_text_size_24'>电话:</view>
+        <view class='chanpin_text_size_24'>商家:{{retdata.AgentName}}</view>
+        <view class='chanpin_text_size_24'>地址:{{retdata.Address}}</view>
+        <view class='chanpin_text_size_24'>电话:{{retdata.Phone}}</view>
       </view>
     </view>
 
@@ -38,11 +38,11 @@
     </view>
 
     <view class='pad_view'>
-      <text class='buttom_text_size_24'>111111111\n111111</text>
+      <text class='buttom_text_size_24'>{{retdata.UseRole}}</text>
     </view>
   </view>
 
   <view class='pay_view'>
-    <view class='quxiao_view'>关闭</view>
+    <view class='quxiao_view' bindtap='close'>关闭</view>
   </view>
 </view>

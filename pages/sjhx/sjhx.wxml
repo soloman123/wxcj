@@ -2,27 +2,27 @@
 <view>
 
   <view class='body'>
-    <view class='hexiao_title'>核销码:XXXXXXXXXXXX</view>
+    <view class='hexiao_title'>核销码:{{Consumption.ConsumptionCode}}</view>
     <view class='line'></view>
     <view class='shenfenxinxi'>
-      <image class='userinfo-avatar' src='{{avatar_img}}'mode='widthFix'></image>
+      <image class='userinfo-avatar' src='{{Consumption.UserIcon}}'mode='widthFix'></image>
       <view class='text_hg'>
-        <view class='name_text_size'>111111</view>
-        <view class='goumai_text_size'>111111</view>
+        <view class='name_text_size'>{{Consumption.Nickname}}</view>
+        <view class='goumai_text_size'>{{Consumption.PayTime}}</view>
       </view>
     </view>
     <view class='line'></view>
 
     <view class='chanpin_body'>
-      <image class='chanpin_icon' src='{{avatar_img}}'mode='widthFix'></image>
+      <image class='chanpin_icon' src='{{Consumption.ProductIcon}}'mode='widthFix'></image>
       <view class='text_hg'>
         <view class='je'>
-          <view class='chanpin_text_size'>111111</view>
-          <view class='chanpin_text_size_24_h'>原价:222</view>
+          <view class='chanpin_text_size'>{{Consumption.ProductName}}</view>
+          <view class='chanpin_text_size_24_h'>原价:{{Consumption.Price}}</view>
         </view>
-        <view class='chanpin_text_size_24'>商家:</view>
-        <view class='chanpin_text_size_24'>地址:</view>
-        <view class='chanpin_text_size_24'>电话:</view>
+        <view class='chanpin_text_size_24'>商家:{{Consumption.AgentName}}</view>
+        <view class='chanpin_text_size_24'>地址:{{Consumption.Address}}</view>
+        <view class='chanpin_text_size_24'>电话:{{Consumption.Phone}}</view>
       </view>
     </view>
 
@@ -33,7 +33,7 @@
     </view>
 
     <view class='pad_view'>
-      <text class='buttom_text_size_24'>111111111\n111111</text>
+      <text class='buttom_text_size_24'>{{Consumption.UseRole}}</text>
     </view>
   </view>
 

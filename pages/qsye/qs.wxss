@@ -15,10 +15,11 @@ page {
   flex-direction: row;
   justify-content: space-between;
 }
-.fenge{
+
+.fenge {
   height: 16rpx;
-width: 100%;
-    background: #dbdbdb;
+  width: 100%;
+  background: #dbdbdb;
 }
 
 .top_left_font_size {
@@ -45,13 +46,13 @@ width: 100%;
   height: 150rpx;
   flex-direction: column;
   justify-content: space-around;
-  justify-items: center
+  justify-items: center;
 }
 
 .top_right_height {
   display: flex;
   height: 100%;
-    padding-right: 20rpx;
+  padding-right: 20rpx;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
@@ -60,7 +61,7 @@ width: 100%;
 .top_right {
   height: 100%;
   width: 300rpx;
-    padding-right: 20rpx;
+  padding-right: 20rpx;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -72,9 +73,87 @@ width: 100%;
   height: 60rpx;
 }
 
+.ipc {
+  width: 28rpx;
+  height: 36rpx;
+}
 
+.cj_text {
+  color: #333;
+  font-size: 30rpx;
+  margin-left: 10rpx;
+}
 
+.dz {
+  margin-top: 40rpx;
+  margin-left: 38rpx;
+  color: #333;
+  font-size: 36rpx;
+}
 
+.sb {
+  margin-top: 20rpx;
+  margin-left: 38rpx;
+  color: #666;
+  font-size: 30rpx;
+}
+
+.sb1 {
+  margin-top: 20rpx;
+  margin-left: 68rpx;
+  color: #999;
+  margin-right: 68rpx;
+  font-size: 30rpx;
+  margin-bottom: 60rpx;
+}
+
+.line {
+  background: #d6d6d6;
+  height: 1rpx;
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+}
+
+.qsjl {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.qsjl_left {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin-left: 30rpx;
+  margin-top: 30rpx;
+}
+
+.ljcj {
+  color: #f60;
+  border-color: #f60;
+  border-style: solid;
+  border-top-width: 1px;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-radius: 30rpx;
+  font-size: 28rpx;
+  width: 159rpx;
+  height: 54rpx;
+  line-height: 54rpx;
+  text-align: center;
+}
+
+.qsjl_right {
+  display: flex;
+  flex-direction: column;
+  justify-items: flex-end;
+  align-items: flex-end;
+ 
+  margin-top: 30rpx;
+  width: 30%;
+  margin-right: 30rpx;
+}
 
 .av {
   display: flex;
@@ -110,24 +189,21 @@ width: 100%;
 .userinfo-nickname {
   color: #aaa;
 }
-.banner{
+
+.banner {
   width: 690rpx;
   height: 354rpx;
   margin-top: 98rpx;
 }
 
-
-
 .bottom_text {
   line-height: 1.7;
   font-size: 30rpx;
-  color: #333333;
+  color: #333;
 }
-
 
 .bottom-dialog-body {
   display: flex;
- 
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
@@ -135,5 +211,3 @@ width: 100%;
   margin-top: 14rpx;
   background-color: #fff;
 }
-
-

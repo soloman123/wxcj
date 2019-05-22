@@ -2,7 +2,7 @@
 <view>
   <view class='top_bac'>
     <view class='top_left'>
-      <image class='userinfo-avatar' src='../../images/user_img.png'></image>
+      <image class='userinfo-avatar' src='{{avatar_img}}'></image>
       <view class='top_left_height'>
         <text class='top_left_font_size'>{{name}}</text>
         <text class='top_left_phone_font_size'>手机 : {{phonenum}} </text>
@@ -20,7 +20,31 @@
     </view>
   </view>
   <view class='fenge'></view>
+  <view>
+    <view class='qsjl'>
+      <view class='qsjl_left'>
+        <view class='qsjl'>
+          <image image class='ipc' src='/images/icon_loc.png' mode='widthFix'></image>
+          <view class='cj_text'>
+            上次抽奖:
+          </view>
 
+        </view>
+        <view class='dz'>
+          北京清大世纪培训学校
+        </view>
+        <view class='sb'>
+          设备ID: {{deviceid}}
+        </view>
+      </view>
+      <view class='qsjl_right'>
+        <view class='ljcj' bindtap='opencj'>立即抽奖</view>
+      </view>
+
+    </view>
+    <view class='sb1'>如果您当前在此机构的这台新媒体屏前,您可以点击"立即抽奖"直接进入抽奖界面</view>
+    <view class='line'></view>
+  </view>
   <view class='bottom-dialog-body '>
     <view class='bottom_text'>请您到安装了新媒体互动广告屏的商家，</view>
     <view class='bottom_text'>用微信“扫一扫”，扫屏上的小程序码，</view>

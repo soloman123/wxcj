@@ -27,7 +27,7 @@
 </view>
 
 
-<swiper current="{{currentData}}" class='swiper' style="height:{{windowHeight}}px" duration="300" bindchange="bindchange">
+<swiper current="{{currentData}}" class='swiper' style="height:{{windowHeight}}rpx" duration="300">
 
   <swiper-item catchtouchmove='catchTouchMove'>
     <view class='swiper_hx'>
@@ -40,7 +40,9 @@
         </view>
       </view>
     </view>
-    <swiper current="{{currenthxItemData}}" class='swiper' style="height:{{styh}}%;" duration="300" bindchange="bindchange1">
+    <swiper current="{{currenthxItemData}}" class='swiper' style="height:{{windowHeight-320}}rpx;" duration="300" bindchange="bindchange1">
+
+      <!-- style="height:{{styh}}%;" -->
       <swiper-item catchtouchmove='catchTouchMove'>
         <view class='swiper_hx_bar_saoma' bindtap='saoma'>
           <view class='swiper_hx_bar_saoma_left'>
@@ -60,7 +62,7 @@
               <text class='text_24'>输入用户出示的核销码</text>
             </view>
           </view>
-          <input class='swiper_hx_bar_saoma_rg_input'></input>
+          <input class='swiper_hx_bar_saoma_rg_input' bindinput='hem'></input>
           <view class='button_view'>
             <view class='button_' bindtap='submit'>
               <text>提 交</text>
@@ -96,7 +98,7 @@
                       </view>
                     </view>
                   </view>
-                  <view class='next' bindtap='next'>
+                  <view class='next' bindtap='next' data-index="{{index}}">
                     <image class='next_img' src='/images/icon_next.png'></image>
                   </view>
                 </view>
@@ -131,22 +133,22 @@
     </view>
 
 
-    <swiper current="{{currenttxItemData}}" class='swiper' style="height:{{styh1}}%;" duration="300" bindchange="bindchange2">
+    <swiper current="{{currenttxItemData}}" class='swiper' style="height:{{windowHeight-420}}rpx;"duration="300" bindchange="bindchange2">
       <swiper-item catchtouchmove='catchTouchMove'>
-        <scroll-view scroll-y='true' style='height:100%;' bindscrolltolower="loadMore2" lower-threshold="0">
+        <scroll-view scroll-y='true'  bindscrolltolower="loadMore2" lower-threshold="0">
           <view class='list_view'>
-            <block wx:for="{{num}}" wx:for-item="item" wx:key="index">
+            <block wx:for="{{libaoxiaoshoulist}}" wx:for-item="item" wx:key="index">
               <view class='libao_xiaoshou_item'>
                 <view class='tixian_top_view'>
                   <view class='text_hg'>
 
                     <view class='tx_h_v'>
-                      <view class='tixian_text_size'>{{spname}}</view>
-                      <view class='tixian_text_size_24'>单号:xxxxxx</view>
+                      <view class='tixian_text_size'>{{item.Name}}</view>
+                      <view class='tixian_text_size_24'>单号:{{item.PrizeCode}}</view>
                     </view>
                     <view class='tx_h_v'>
-                      <view class='tixian_text_size_24'>销售金额{{}}元</view>
-                      <view class='tixian_text_size_24'>提成金额:{{}}元</view>
+                      <view class='tixian_text_size_24'>销售金额{{item.Cost}}元</view>
+                      <view class='tixian_text_size_24'>提成金额:{{item.Commission}}元</view>
                     </view>
                   </view>
                 </view>
@@ -157,7 +159,7 @@
                     <view class='je'>
                       <view class='chanpin_text_size'>111111</view>
                     </view>
-                    <view class='chanpin_text_size_24'>购买时间:</view>
+                    <view class='chanpin_text_size_24'>购买时间:{{item.PayTime}}</view>
                   </view>
                 </view>
               </view>
@@ -166,10 +168,10 @@
           </view>
         </scroll-view>
       </swiper-item>
-      <swiper-item catchtouchmove='catchTouchMove'>
+      <swiper-item>
         <scroll-view scroll-y='true' style='height:100%;' bindscrolltolower="loadMore1" lower-threshold="0">
           <view class='list_view'>
-            <block wx:for="{{num}}" wx:for-item="item" wx:key="index">
+            <block wx:for="{{txjllist}}" wx:for-item="item" wx:key="index">
               <view class='libao_tcjl_item'>
 
                 <view class='txjl_item_m'>
@@ -195,4 +197,4 @@
       </swiper-item>
     </swiper>
   </swiper-item>
-</swiper> 
+</swiper>

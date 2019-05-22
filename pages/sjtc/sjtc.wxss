@@ -20,6 +20,12 @@ page {
   justify-items: center; */
 }
 
+.input_v{
+  width: 300rpx;
+  margin-left: 20rpx;
+
+}
+
 .tx_view {
   display: flex;
   height: 76rpx;
@@ -45,10 +51,11 @@ page {
 .txje {
   display: flex;
   height: 90rpx;
+  flex-direction: row;
   padding-left: 66rpx;
   font-size: 30rpx;
   color: #999;
-  background: #fff;
+  
   align-items: center;
 }
 

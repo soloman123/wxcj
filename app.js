@@ -7,16 +7,16 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-
-    type :0;
+ 
+    type: 0;
     // 登录
     wx.login({
-     
+
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      
+        console.log(res.code)
         var that = this;
-        var str ='https://api.haoban173.com/wxprizeapi/Login/'+res.code;
+        var str = 'https://api.haoban173.com/wxprizeapi/Login/' + res.code;
         wx.request({
           url: str,
           // header: {
@@ -26,20 +26,30 @@ App({
           success: function (res) {
             console.log(res);
             that.globalData.openid = res.data.openid //返回openid
-          },fail(e){
-            that.globalData.openid =null; //返回openid
+          }, fail(e) {
+            that.globalData.openid = null; //返回openid
           }
         })
-      console.log(str);
+        console.log(str);
       }
     })
 
   },
-  globalData:{
-    userinfo:null,
-    openid:null,
+  globalData: {
+    userinfo: null,
+    openid: null,
+    ishide:true,
     phonenum: '未验证',
+  },
+
+
+  onShow: function () {
+    console.log('app onShow')
+    console.log(this.globalData.ishide)
+  },
+  onHide: function () {
+    this.globalData.ishide = false;
+    console.log('app onHide')
+  
   }
-
-
 })

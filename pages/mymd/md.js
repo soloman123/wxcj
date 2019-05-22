@@ -42,7 +42,7 @@ Page({
 console.log("sssss");
     if (this.data.list[e.currentTarget.dataset.index].PayState === 0) {
       wx.navigateTo({
-        url: '../pay/pay?retdata=' + JSON.stringify(this.data.list[e.currentTarget.dataset.index])
+        url: '../pay/pay?retdata=' + JSON.stringify(this.data.list[e.currentTarget.dataset.index]) + "&deviceId=" + this.data.deviceId + "&PrizeId=" + this.data.list[e.currentTarget.dataset.index].PrizeId
       })
     } else {
       wx.navigateTo({

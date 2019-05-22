@@ -2,11 +2,21 @@
 
 <view>
   <view class='top_margin'>
-
   </view>
+
+
+  <view class='exit' hidden='{{exit}}'>
+  
+    <navigator class='exit_text' open-type="exit" hover-class="other-navigator-hover" target="miniProgram">
+    <view>点击退出后重新抽奖</view>
+      
+    </navigator>
+  </view>
+
   <view class='top_bac'>
     <view class='top_left'>
-      <image class='userinfo-avatar' src='{{avatar_img}}'></image>
+      <image class='userinfo-avatar' src='{{avatar_img}}' bindtap='qes'></image>
+      <!-- bindtap='qes' -->
       <view class='top_left_height'>
         <text class='top_left_font_size'>{{name}}</text>
         <text class='top_left_phone_font_size'>手机 : {{phonenum}} </text>
@@ -23,80 +33,70 @@
       </view>
     </view>
   </view>
-
-  <!-- 停止位置:
-    <input value='{{luckPosition}}' style="width:100%;text-align:center" bindinput='input' type='number'></input> -->
-
   <view class="av">
 
     <view class='view_back'>
       <view class='four_number_view' hidden='{{zhezhaoval}}'>
+
         <text class='four_number_view_text_size'>请输入四位抽奖码</text>
-        <view class='view_hidden'>
-          <input class='input' bindinput='one' maxlength='1'  type='number' focus="{{inputShowed1}}"></input>
-          <input class='input' bindinput='two' maxlength='1'  type='number' focus="{{inputShowed2}}"></input>
-          <input class='input' bindinput='three' maxlength='1'  type='number' focus="{{inputShowed3}}"></input>
-          <input class='input' bindinput='four' maxlength='1'  type='number' focus="{{inputShowed4}}"></input>
-        </view>
-        <button class='button_down' bindtap='submit'>确定</button>
+        <form bindsubmit="submitCode">
+          <view class='indentify-code'>
+            <block wx:for="{{codeLength}}" wx:key="index">
+              <input class='code-box' type='number' catchtap='focusBox' value='{{code.length>=1?code[index]:""}}' disabled></input>
+            </block>
+          </view>
+          <input class='realCode' type='number' focus="{{isFocus}}" bindinput="inputCode" maxlength='{{codeLength}}' name="code"></input>
+          <button formType="submit" class='button_down'>确定</button>
+        </form>
       </view>
 
-      <view class='frame_view'>
 
+      <view class='frame_view'>
         <view class='frame_row'>
           <view class='jl_item'>
             <image class='frame_item' style='opacity:{{color[0]}}' src='{{images_back}}'></image>
-            <image class='jl_item_1' style='opacity:{{color[0]}}' src='{{images[0].Icon}}'></image>
+            <image class='jl_item_1' style='opacity:{{color[0]}}' src='{{images[0].Icon.length>=1?images[0].Icon:defimg}}'></image>
           </view>
           <view class='jl_item'>
             <image class='frame_item' style='opacity:{{color[1]}}' src='{{images_back}}'></image>
-            <image class='jl_item_1' style='opacity:{{color[1]}}' src='{{images[1].Icon}}'></image>
+            <image class='jl_item_1' style='opacity:{{color[1]}}' src='{{images[1].Icon.length>=1?images[1].Icon:defimg}}'></image>
           </view>
-
           <view class='jl_item'>
             <image class='frame_item' style='opacity:{{color[2]}}' src='{{images_back}}'></image>
-            <image class='jl_item_1' style='opacity:{{color[2]}}' src='{{images[2].Icon}}'></image>
+            <image class='jl_item_1' style='opacity:{{color[2]}}' src='{{images[2].Icon.length>=1?images[2].Icon:defimg}}'></image>
           </view>
-
         </view>
-
         <view class='frame_row'>
           <view class='jl_item'>
             <image class='frame_item' style='opacity:{{color[7]}}' src='{{images_back}}'></image>
-            <image class='jl_item_1' style='opacity:{{color[7]}}' src='{{images[7].Icon}}'></image>
+            <image class='jl_item_1' style='opacity:{{color[7]}}' src='{{images[7].Icon.length>=1?images[7].Icon:defimg}}'></image>
           </view>
           <image class='frame_item' src='{{btnconfirm}}'></image>
           <!-- bindtap='{{clickLuck}}' -->
           <view class='jl_item'>
             <image class='frame_item' style='opacity:{{color[3]}}' src='{{images_back}}'></image>
-            <image class='jl_item_1' style='opacity:{{color[3]}}' src='{{images[3].Icon}}'></image>
+            <image class='jl_item_1' style='opacity:{{color[3]}}' src='{{images[3].Icon.length>=1?images[3].Icon:defimg}}'></image>
           </view>
         </view>
         <view class='frame_row'>
           <view class='jl_item'>
             <image class='frame_item' style='opacity:{{color[6]}}' src='{{images_back}}'></image>
-            <image class='jl_item_1' style='opacity:{{color[6]}}' src='{{images[6].Icon}}'></image>
+            <image class='jl_item_1' style='opacity:{{color[6]}}' src='{{images[6].Icon.length>=1?images[6].Icon:defimg}}'></image>
           </view>
           <view class='jl_item'>
             <image class='frame_item' style='opacity:{{color[5]}}' src='{{images_back}}'></image>
-            <image class='jl_item_1' style='opacity:{{color[5]}}' src='{{images[5].Icon}}'></image>
+            <image class='jl_item_1' style='opacity:{{color[5]}}' src='{{images[5].Icon.length>=1?images[5].Icon:defimg}}'></image>
           </view>
           <view class='jl_item'>
             <image class='frame_item' style='opacity:{{color[4]}}' src='{{images_back}}'></image>
-            <image class='jl_item_1' style='opacity:{{color[4]}}' src='{{images[4].Icon}}'></image>
+            <image class='jl_item_1' style='opacity:{{color[4]}}' src='{{images[4].Icon.length>=1?images[4].Icon:defimg}}'></image>
           </view>
         </view>
       </view>
     </view>
-
-
-
-
-
     <view class="modals modals-bottom-dialog" hidden="{{hideModal}}">
       <view class="modals-cancel" bindtap=""></view>
       <view class="bottom-dialog-body bottom-pos" animation="{{animationData}}">
-
         <image class='userinfo-avatar' src='{{headimg}}'></image>
         <view class='bottom_text'>欢迎你来到</view>
         <view class='bottom_text'>免单王小程序</view>
@@ -105,15 +105,17 @@
     </view>
   </view>
 
+
+
+
   <view class='huodongshuoming'>
     <image class='huodongshuoming_image' src='/images/lottery_bg_01.png' mode='aspectFill'></image>
     <view class='list_view'>
-      <view class='item_view' wx:for="{{list}}" wx:for-item="i">
+      <view class='item_view' wx:for="{{list}}" wx:for-item="i" wx:key='i'>
         <view class='item_view_text'>
           {{i}}
         </view>
       </view>
     </view>
-
   </view>
 </view>

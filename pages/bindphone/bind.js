@@ -1,4 +1,5 @@
 // pages/bindphone/bind.js
+const app = getApp()
 var network = require("../../utils/network.js")
 Page({
 
@@ -46,7 +47,7 @@ Page({
       var data ={
         Mobile: this.data.phone,
         Type: 0,
-
+        BType:1,
       }
       network.getData("MobileValidCode/", data, this.doSuccess, this.doFail, 1);
  
@@ -55,6 +56,7 @@ Page({
 
   doSuccess: function (e, type) {
     console.log(e);
+    let that = this;
     switch (type) {
       case 1: {
         if (e.Code < 0) {
@@ -68,21 +70,30 @@ Page({
         }
       } break;
       case 2:{
-        if (e === false) {
+        wx.hideLoading()
+        if (e.Code < 0) {
           wx.showToast({
-            title: '绑定失败',
+            title: '绑定失败:' + e.Message,
             icon: 'none'
           })
         }else{
+          app.globalData.phonenum = that.data.phone; 
+          wx.setStorage({
+            key: 'phone',
+            data: app.globalData.phonenum,
+          })
+          wx.showToast({
+            title: '绑定成功',
+            icon: 'none',
+            duration: 3000,
+          })
+
           setTimeout(function(){
-            wx.showToast({
-              title: '绑定成功',
-              icon: 'none'
-            },3900)
+           
             wx.navigateBack({
               delta: 1
             })
-          },4000)
+          },3000)
      
         }
       }break;
@@ -100,7 +111,7 @@ Page({
     var data = {
       Mobile: this.data.phone,
       Type: 1,
-
+      BType:1,
     }
     network.getData("MobileValidCode/", data, this.doSuccess, this.doFail, 3);
   },
@@ -119,10 +130,15 @@ Page({
       return;
     } else if (this.ismobile(this.data.phone)){
      let data = {
-       'OpenId': app.globalData.openid,
+        'OpenId': app.globalData.openid,
         'Mobile': this.data.phone,
         'Code': this.data.code,
+        'BType':1
       }
+      console.log(data);
+      wx.showLoading({
+        title: '正在绑定手机号',
+      })
       network.request("MobileValidCode/", data, this.doSuccess, this.doFail, 2);
     }
 

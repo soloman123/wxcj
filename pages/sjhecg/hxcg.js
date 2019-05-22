@@ -8,15 +8,14 @@ Page({
     cgimg: '../../images/icon_hx01.png',
     avatar_img: '../../images/user_img.png',
     status_text:'1111',
+    retdata:'',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
     var type = options.type;
-    
     switch(type){
       case '1':
       this.setData({
@@ -26,11 +25,17 @@ Page({
       case '2':
         this.setData({
           status_text: '已核销!',
+          retdata: JSON.parse(options.data),
         })
       break;
     }
   },
 
+  close:function(){
+    wx.navigateBack({
+      delta:1
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

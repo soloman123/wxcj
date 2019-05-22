@@ -32,6 +32,7 @@ page {
 }
 
 .hexiao_title {
+
   padding-left: 35rpx;
   align-items: center;
   height: 90rpx;
@@ -222,7 +223,6 @@ page {
   border-top-width: 1px;
   border-right-width: 1px;
   border-bottom-width: 1px;
- 
   border-left-width: 1px;
   border-radius: 30rpx;
 }

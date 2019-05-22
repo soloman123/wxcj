@@ -6,8 +6,11 @@ Page({
    * 页面的初始数据
    */
   data: {
+    avatar_img:'/images/user_img.png',
     name: '',
     phonenum:'',
+    deviceid:'',
+    dz:'',
   },
 
   /**
@@ -16,6 +19,7 @@ Page({
   onLoad: function (options) {
     this.setData({
       name: options.name,
+      avatar_img:options.avatar_img,
       phonenum: app.globalData.phonenum,
     })
 
@@ -32,21 +36,40 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    console.log(111);
+    let that = this;
+    wx.getStorage({
+      key: 'deviceId',
+      success: function(res) {
+        
+        that.setData({
+          deviceid: res.data,
+        })
+        console.log('getStorage')
+        console.log(res.data)
+      },
+    })
   },
-
+  opencj:function(){
+    wx.redirectTo({
+      url: '../index/index?deviceId=' + this.data.deviceid
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    console.log(222);
+    this.onUnload();
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    console.log(333);
+    wx.clearStorage();
+    wx.navigateBack()
   },
 
   /**
@@ -67,6 +90,6 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+  
   }
 })

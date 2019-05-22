@@ -1,5 +1,5 @@
 <!--pages/pay/pay.wxml-->
-<view>
+<view class='back'>
   <view class='list_view'>
     <view class='list_item'>
       <view class='item_left'>
@@ -16,8 +16,8 @@
       </view>
     </view>
     <view class='je'>
-      <view class='pay_text'>您需支付:</view>
-      <view class='pay_text_c'>{{item.Cost}}元</view>
+      <view class='pay_text'>您需支付 : {{item.Cost}}元</view>
+      <!-- <view class='pay_text_c'>{{item.Cost}}元</view> -->
     </view>
   </view>
 

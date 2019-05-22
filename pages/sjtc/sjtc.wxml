@@ -7,53 +7,70 @@
   <view class='back'>
     <view class='line'></view>
   </view>
-  <view class='txje'>提现金额</view>
+  <view class='txje'>
+    <text>提现金额</text>
+    <input class='input_v' placeholder='输入提现金额' type='number' bindinput='Cost'></input>
+
+  </view>
   <view class='back'>
     <view class='line'></view>
   </view>
   <view class='txd_view'>
     <view>提现到</view>
     <radio-group bindchange="checkboxChange">
-      <label class="radio" wx:for="{{items}}">
+      <label class="radio" wx:for="{{items}}" wx:key=''>
         <radio value="{{item.name}}" checked="{{item.checked}}" /> {{item.value}}
       </label>
     </radio-group>
-
-
   </view>
 
   <view class='back'>
     <view class='line'></view>
   </view>
-  <view class='txje'>银 行</view>
 
-  <view class='back'>
-    <view class='line'></view>
-  </view>
-  <view class='txje'>开户行</view>
 
-  <view class='back'>
-    <view class='line'></view>
-  </view>
-  <view class='txje'>收款人</view>
-  <view class='back'>
-    <view class='line'></view>
-  </view>
-  <view class='txje'>收款账号</view>
-  <view class='back'>
-    <view class='line'></view>
-  </view>
+  <view wx:if='{{cursor == 2}}'>
+    <view class='txje'>银 行
+      <input class='input_v' placeholder='输入所在银行' type='number' bindinput='BankName'></input>
+    </view>
 
+    <view class='back'>
+      <view class='line'></view>
+    </view>
+    <view class='txje'>开户行
+      <input class='input_v' placeholder='输入开户行地址' type='number' bindinput='BankDeposit'></input>
+    </view>
+
+    <view class='back'>
+      <view class='line'></view>
+    </view>
+
+  </view>
+  <view class='txje'>收款人
+    <input class='input_v' placeholder='输入收款人姓名' type='number' bindinput='ReceiveName'></input>
+  </view>
+  <view class='back'>
+    <view class='line'></view>
+  </view>
+  <view class='txje'>收款账号
+    <input class='input_v' placeholder='输入收款账号' type='number' bindinput='Account'></input>
+  </view>
+  <view class='back'>
+    <view class='line'></view>
+  </view>
   <view class='txd_view'>
     <view>短信验证码</view>
-    <view class='getcode'>获取验证码</view>
+    <input class='input_v' placeholder='输入短信验证码' type='number' bindinput='input_code'></input>
+    <view bindtap="{{!disabled?'click_getcode':''}}">{{btntext}}</view>
+
+
   </view>
   <view class='back'>
     <view class='line'></view>
   </view>
-  <view class='dxxx'>收款账号</view>
+  <view class='dxxx' bindtap='click_yuyin'>收不到短信?</view>
   <view class='sub_view'>
-    <view class='submit'>提交</view>
+    <view class='submit' bindtap='click_submit'>提交</view>
   </view>
 
 </view>

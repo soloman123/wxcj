@@ -18,7 +18,7 @@ Page({
   onLoad: function (options) {
 
     if (options.ConsumptionState === 1){
-      wx.setNavigationBarTitle('面单详情')
+      wx.setNavigationBarTitle('免单详情')
       this.setData({
         isshow:false
       })
