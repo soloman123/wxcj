@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isclean: false,
     retdata: '',
     hexiaolist: '',
     ishexiao: true,
@@ -17,7 +18,7 @@ Page({
     islibaoxiaoshou: true,
     libaoxiaoshoulist: '',
     libaoxiaoshouPageIndex: 1,
-
+    libaoxiaoshoutext: '正在加载',
 
 
     txjlretdata: '',
@@ -87,7 +88,11 @@ Page({
 
 
   },
-
+  grzx:function(){
+    wx.reLaunch({
+      url: '../qsye/qs?name=' + this.data.name + "&avatar_img=" + this.data.avatar_img
+    })
+  },
 
   loadhexiao: function () {
 
@@ -169,9 +174,17 @@ Page({
   },
 
   submit: function () {
-    wx.navigateTo({
-      url: '../sjhx/sjhx?code=' + this.data.sgcode
-    })
+    if (this.data.sgcode.length <= 0) {
+      wx.showModal({
+        title: '错误提示',
+        content: '请正确输入核销码',
+        showCancel: false,
+        confirmText: '知道了'
+      })
+    } else {
+      network.getData("Consumption/" + this.data.sgcode, '', this.doSuccess, this.doFail, 4);
+    }
+
   },
 
   doSuccess: function (e, type) {
@@ -181,59 +194,72 @@ Page({
     switch (type) {
       case 1:
         {
-          // if (e.Code <0){
-          //   return;
-          // }
-          that.setData({
-            retdata: e,
-          })
-          setTimeout(function () {
-            if (e.List.length > 0) {
-              let searchList = '';
-              that.data.ishexiao ? searchList = e.List : searchList = that.data.hexiaolist.concat(e.List)
-              that.setData({
-                hexiaolist: searchList,
-                hexiaoPageIndex: that.data.hexiaoPageIndex + 1,
-              })
-            } else {
-              wx.showToast({
-                title: '无更多数据数据加载',
-                icon: 'none'
-              })
-              that.setData({
-                ishexiao: true,
-              })
-            }
-
-          }, 400);
-        }
-        break;
-      case 2: {
-
-        that.setData({
-          libaoxiaoshouretdata: e,
-        })
-        setTimeout(function () {
-          if (e.List.length > 0) {
-            let searchList = '';
-            that.data.islibaoxiaoshou ? searchList = e.List : searchList = that.data.libaoxiaoshoulist.concat(e.List)
-            that.setData({
-              libaoxiaoshoulist: searchList,
-              libaoxiaoshouPageIndex: that.data.libaoxiaoshouPageIndex + 1,
+          if (e.Code < 0) {
+            wx.showModal({
+              title: '错误提示',
+              content: e.Message,
+              showCancel: false,
             })
           } else {
-            wx.showToast({
-              title: '无数据加载',
-              icon: 'none'
-            })
             that.setData({
-              islibaoxiaoshou: true,
+              retdata: e,
             })
+            setTimeout(function () {
+              if (e.List.length > 0) {
+                let searchList = '';
+                that.data.ishexiao ? searchList = e.List : searchList = that.data.hexiaolist.concat(e.List)
+                that.setData({
+                  hexiaolist: searchList,
+                  hexiaoPageIndex: that.data.hexiaoPageIndex + 1,
+                })
+              } else {
+
+                that.setData({
+                  ishexiao: true,
+                  libaoxiaoshoutext: '无数据加载',
+                })
+              }
+
+            }, 400);
+
           }
 
-        }, 400);
+        }
+        break;
+      case 2:
+        {
+          if (e.Code < 0) {
+            wx.showModal({
+              title: '错误提示',
+              content: e.Message,
+              showCancel: false,
+            })
+          } else {
+            that.setData({
+              libaoxiaoshouretdata: e,
+            })
+            setTimeout(function () {
+              if (e.List.length > 0) {
+                let searchList = '';
+                that.data.islibaoxiaoshou ? searchList = e.List : searchList = that.data.libaoxiaoshoulist.concat(e.List)
+                that.setData({
+                  libaoxiaoshoulist: searchList,
+                  libaoxiaoshouPageIndex: that.data.libaoxiaoshouPageIndex + 1,
+                })
+              } else {
 
-      } break;
+                that.setData({
+                  islibaoxiaoshou: true,
+                  libaoxiaoshoutext: '无数据加载',
+                })
+              }
+
+            }, 400);
+
+          }
+
+        }
+        break;
       case 3:
         {
           if (e.Code < 0) {
@@ -255,32 +281,65 @@ Page({
                   txjlPageIndex: that.data.txjlPageIndex + 1,
                 })
               } else {
-                wx.showToast({
-                  title: '无数据加载',
-                  icon: 'none'
-                })
+
                 that.setData({
                   istxjl: true,
+                  libaoxiaoshoutext: '无数据加载',
                 })
               }
             }, 400);
           }
         }
         break;
+      case 4:
+        if (e) {
+          wx.navigateTo({
+            url: '../sjhx/sjhx?code=' + this.data.sgcode + "&Consumption=" + JSON.stringify(e)
+          })
+          // this.setData({
+          //   Consumption: res,
+          // })
+        } else {
+          wx.showModal({
+            title: '服务器返回错误信息',
+            content: '核销码不正确,请认真填写核销码',
+            showCancel: false,
+            success(res) {
+
+            }
+          })
+        }
+
+
+        break;
     }
 
   },
 
   saoma: function () {
-
+    let that = this;
     wx.scanCode({
       onlyFromCamera: true,
+   
       success(res) {
         console.log(res)
-        wx.navigateTo({
-          url: '../sjhx/sjhx?code=' + res
-        })
 
+        if (res.errMsg != 'scanCode:ok') {
+          wx.showModal({
+            title: '错误提示',
+            content: '请正确输入核销码',
+            showCancel: false,
+            confirmText: '知道了'
+          })
+        } else {
+          that.setData({
+            sgcode: res.result,
+          })
+          network.getData("Consumption/" + that.data.sgcode, '', that.doSuccess, that.doFail, 4);
+        }
+        // wx.navigateTo({
+        //   url: '../sjhx/sjhx?code=' + res
+        // })
       }
     })
   },
@@ -424,7 +483,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    if (this.data.isclean == true) {
+      this.setData({
+        sgcode: '',
+        isclean: false,
+      })
+    }
   },
 
   /**

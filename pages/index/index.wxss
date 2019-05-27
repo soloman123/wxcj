@@ -239,6 +239,22 @@ page {
   border-radius: 30rpx;
 }
 
+.close{
+  position: absolute;
+  margin-top: 200rpx;
+  width: 450rpx;
+  flex-direction: column;
+  line-height: 100rpx;
+  padding: 20rpx;
+  background: #fff;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 30rpx;
+}
+
+
 .four_number_view_text_size {
   margin-top: 16rpx;
   font-size: 40rpx;

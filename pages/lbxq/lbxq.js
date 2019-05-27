@@ -22,7 +22,7 @@ Page({
   load: function (_PrizeId) {
     console.log(_PrizeId);
     var data = {
-      PrizeId: 22,//_PrizeId,
+      PrizeId: _PrizeId,
       PageIndex: this.data.PageIndex,
     }
     network.getData("UserProducts", data, this.doSuccess, this.doFail, 1);
@@ -41,7 +41,7 @@ Page({
   },
 
   click_item:function(e){
-
+    console.log('#####'+this.data.list[e.currentTarget.dataset.index].ConsumptionState);
     wx.navigateTo({
                          
       url: '../hexiao/hx?PrizeProductid=' + 
@@ -108,7 +108,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    console.log('lbxq -onUnload')
   },
 
   /**

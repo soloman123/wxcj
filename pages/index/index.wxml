@@ -5,13 +5,13 @@
   </view>
 
 
-  <view class='exit' hidden='{{exit}}'>
-  
+  <!-- <view class='exit' hidden='{{exit}}'>
+
     <navigator class='exit_text' open-type="exit" hover-class="other-navigator-hover" target="miniProgram">
-    <view>点击退出后重新抽奖</view>
-      
+      <view>点击退出后重新抽奖</view>
+
     </navigator>
-  </view>
+  </view> -->
 
   <view class='top_bac'>
     <view class='top_left'>
@@ -35,19 +35,39 @@
   </view>
   <view class="av">
 
+
     <view class='view_back'>
+
+
+
+
       <view class='four_number_view' hidden='{{zhezhaoval}}'>
 
         <text class='four_number_view_text_size'>请输入四位抽奖码</text>
-        <form bindsubmit="submitCode">
-          <view class='indentify-code'>
-            <block wx:for="{{codeLength}}" wx:key="index">
-              <input class='code-box' type='number' catchtap='focusBox' value='{{code.length>=1?code[index]:""}}' disabled></input>
-            </block>
-          </view>
-          <input class='realCode' type='number' focus="{{isFocus}}" bindinput="inputCode" maxlength='{{codeLength}}' name="code"></input>
-          <button formType="submit" class='button_down'>确定</button>
-        </form>
+
+        <view class='indentify-code'>
+          <block wx:for="{{codeLength}}" wx:key="index">
+            <input class='code-box' type='number' catchtap='focusBox' value='{{code.length>=1?code[index]:""}}' disabled></input>
+          </block>
+        </view>
+        <input class='realCode' type='number' focus="{{isFocus}}" bindinput="inputCode" maxlength='{{codeLength}}' name="code" value='{{code}}'></input>
+        <button formType="submit" class='button_down' bindtap='submitCode'>确定</button>
+
+
+      </view>
+
+
+
+
+
+      <!--  -->
+      <view class='close' hidden='{{close}}'>
+        <text class='four_number_view_text_size'>抽奖码错误</text>
+
+        <navigator open-type="exit" target="miniProgram">
+          点击重新登录小程序
+        </navigator>
+        <!-- <button formType="submit" class='button_down'>点击重新登录</button> -->
       </view>
 
 
@@ -71,8 +91,9 @@
             <image class='frame_item' style='opacity:{{color[7]}}' src='{{images_back}}'></image>
             <image class='jl_item_1' style='opacity:{{color[7]}}' src='{{images[7].Icon.length>=1?images[7].Icon:defimg}}'></image>
           </view>
-          <image class='frame_item' src='{{btnconfirm}}'></image>
-          <!-- bindtap='{{clickLuck}}' -->
+          <view class='jl_item'>
+            <image class='frame_item' src='{{btnconfirm}}' bindtap='choujiang' mode='widthFix'></image>
+          </view>
           <view class='jl_item'>
             <image class='frame_item' style='opacity:{{color[3]}}' src='{{images_back}}'></image>
             <image class='jl_item_1' style='opacity:{{color[3]}}' src='{{images[3].Icon.length>=1?images[3].Icon:defimg}}'></image>
@@ -104,10 +125,6 @@
       </view>
     </view>
   </view>
-
-
-
-
   <view class='huodongshuoming'>
     <image class='huodongshuoming_image' src='/images/lottery_bg_01.png' mode='aspectFill'></image>
     <view class='list_view'>

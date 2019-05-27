@@ -13,15 +13,15 @@
         <image class='dindan_icon' src='/images/icon_center_gray.png'></image>
         <text class='userinfo_text'>我的免单</text>
       </view>
-      <view class='top_right_height'>
+      <view class='top_right_height' bindtap='wssj'>
         <image class='dindan_icon' src='/images/icon_order_gray.png'></image>
         <text class='userinfo_text'>商家中心</text>
       </view>
     </view>
   </view>
   <view class='fenge'></view>
-  <view>
-    <view class='qsjl'>
+  <view hidden='{{ishide}}'>
+    <view class='qsjl' >
       <view class='qsjl_left'>
         <view class='qsjl'>
           <image image class='ipc' src='/images/icon_loc.png' mode='widthFix'></image>
@@ -31,7 +31,7 @@
 
         </view>
         <view class='dz'>
-          北京清大世纪培训学校
+          {{dz}}
         </view>
         <view class='sb'>
           设备ID: {{deviceid}}

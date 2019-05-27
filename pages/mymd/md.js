@@ -20,6 +20,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      deviceId: options.deviceId,
+    })
     this.load();
   },
 
@@ -28,6 +31,7 @@ Page({
       OpenId: app.globalData.openid,
       PageIndex: this.data.PageIndex,
     }
+    console.log(data);
     wx.showLoading({
       title: '正在加载数据...',
     })
@@ -39,15 +43,23 @@ Page({
 
   click_item: function (e) {
 
-console.log("sssss");
+    console.log("sssss");
+
     if (this.data.list[e.currentTarget.dataset.index].PayState === 0) {
       wx.navigateTo({
-        url: '../pay/pay?retdata=' + JSON.stringify(this.data.list[e.currentTarget.dataset.index]) + "&deviceId=" + this.data.deviceId + "&PrizeId=" + this.data.list[e.currentTarget.dataset.index].PrizeId
+        url: '../pay/pay?retdata=' + JSON.stringify(this.data.list[e.currentTarget.dataset.index]) + "&deviceId=" + this.data.deviceId + "&PrizeId=" + this.data.list[e.currentTarget.dataset.index].PrizeId + "&type=" + 0 + "&index=" + e.currentTarget.dataset.index
       })
-    } else {
+    } else if (this.data.list[e.currentTarget.dataset.index].PayState === 1){
       wx.navigateTo({
         url: '../lbxq/lbxq?PrizeId=' + this.data.list[e.currentTarget.dataset.index].PrizeId + "&icon=" +
           this.data.list[e.currentTarget.dataset.index].Icon + "&name=" + this.data.list[e.currentTarget.dataset.index].Name
+      })
+    }else{
+      wx.showModal({
+        title: '提示',
+        content: '该礼包已过期',
+        showCancel:false,
+        confirmText:'知道了',
       })
     }
 
@@ -98,7 +110,9 @@ console.log("sssss");
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+ 
 
+  
   },
 
   /**
@@ -113,6 +127,13 @@ console.log("sssss");
    */
   onUnload: function () {
 
+  // var pages = getCurrentPages();
+  //   console.log('md ' + pages.length)
+  //   if (pages.length>2){
+  //     wx.navigateBack({
+  //       delta: 3,
+  //     })
+  //   }
   },
 
   /**

@@ -3,5 +3,5 @@
   "backgroundTextStyle": "light",
   "navigationBarBackgroundColor": "#000",
   "navigationBarTextStyle": "white",
-  "onReachBottomDistance": 300
+  "onReachBottomDistance": 10
 }

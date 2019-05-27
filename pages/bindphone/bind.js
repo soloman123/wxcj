@@ -85,7 +85,7 @@ Page({
           wx.showToast({
             title: '绑定成功',
             icon: 'none',
-            duration: 3000,
+            duration: 1500,
           })
 
           setTimeout(function(){

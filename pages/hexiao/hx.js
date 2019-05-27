@@ -16,14 +16,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log('hxjs' + options.ConsumptionState)
     if (options.ConsumptionState === 1){
-      wx.setNavigationBarTitle('免单详情')
+      
+      wx.setNavigationBarTitle({ title:'免单详情'})
       this.setData({
         isshow:false
       })
     }else{
-      wx.setNavigationBarTitle('核销')
+      wx.setNavigationBarTitle({ title:'核销'})
     }
     wx.showLoading({
       title: '加载中',
@@ -49,7 +50,8 @@ Page({
       colorLight: "#ffffff",
       correctLevel: QRCode.CorrectLevel.H,
     });
-    console.log(this.data.item);
+
+
   },
 
   doFail:function(){

@@ -73,6 +73,7 @@ page {
   border-radius: 15rpx;
   background: #fff;
   margin: 16rpx;
+  padding-left: 20rpx;
   padding-bottom: 25rpx;
 }
 
@@ -106,7 +107,6 @@ page {
 .qcode_img {
   margin-top: 42rpx;
   margin-bottom: 56rpx;
-  background: #f00;
   width: 300rpx;
   height: 300rpx;
 }

@@ -20,6 +20,8 @@ Page({
       case '1':
       this.setData({
         status_text: '核销成功!',
+        retdata: JSON.parse(options.Consumption),
+        
       })
       break;
       case '2':
@@ -32,8 +34,13 @@ Page({
   },
 
   close:function(){
+    let pages = getCurrentPages();
+    let page = pages[pages.length-3]
+    page.setData({
+      isclean:true,
+    })
     wx.navigateBack({
-      delta:1
+      delta:2
     })
   },
   /**

@@ -31,14 +31,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    wx.showLoading({
-      title: '加载中...',
-    })
+    
+
     this.setData({
+      Consumption :JSON.parse(options.Consumption),
       ConsumptionCode: options.code,
     })
 
-    network.getData("Consumption/" + options.code, '', this.doSuccess, this.doFail, 1);
+    
 
   },
   doSuccess: function(res, type) {
@@ -46,23 +46,6 @@ Page({
     wx.hideLoading();
     switch (type) {
       case 1:
-      if(res){
-        this.setData({
-          Consumption: res,
-        })
-      }else{
-        wx.showModal({
-          title: '服务器返回错误信息',
-          content: '核销码不正确,请认真填写核销码',
-          showCancel:false,
-          success(res){
-            wx.navigateBack({
-              delta: 1
-            })
-          }
-        })
-      }
-   
         break;
       case 2:
         if (res.Code < 0) {
@@ -74,7 +57,8 @@ Page({
           })
         } else {
           wx.navigateTo({
-            url: '../sjhecg/hxcg?type=1'
+            
+            url: '../sjhecg/hxcg?type=1' + "&Consumption=" + JSON.stringify(this.data.Consumption)
           })
         }
         break

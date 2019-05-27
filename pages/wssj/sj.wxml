@@ -19,7 +19,7 @@
       <image wx:if='{{currentData == 1}}' class='dindan_icon' src='/images/icon_hx02.png' mode='widthFix'></image>
       <text class='userinfo_text'>提成</text>
     </view>
-    <view class='top_right_height'>
+    <view class='top_right_height'bindtap='grzx'>
       <image class='dindan_icon' src='/images/icon_hx03_gray.png' mode='widthFix'></image>
       <text class='userinfo_text'>个人中心</text>
     </view>
@@ -62,7 +62,7 @@
               <text class='text_24'>输入用户出示的核销码</text>
             </view>
           </view>
-          <input class='swiper_hx_bar_saoma_rg_input' bindinput='hem'></input>
+          <input class='swiper_hx_bar_saoma_rg_input' bindinput='hem' value='{{sgcode}}'></input>
           <view class='button_view'>
             <view class='button_' bindtap='submit'>
               <text>提 交</text>
@@ -72,7 +72,7 @@
         </view>
       </swiper-item>
       <swiper-item catchtouchmove='catchTouchMove'>
-        <scroll-view scroll-y='true' bindscrolltolower="loadMore" lower-threshold="0">
+        <scroll-view wx:if='{{hexiaolist.length>0}}' scroll-y='true' bindscrolltolower="loadMore" lower-threshold="0">
           <view class='list_view'>
             <block wx:for="{{hexiaolist}}" wx:for-item="item" wx:key="index">
               <view class='item'>
@@ -108,6 +108,9 @@
           </view>
 
         </scroll-view>
+        <view class='not_data' wx:else>
+          {{libaoxiaoshoutext}}
+        </view>
       </swiper-item>
     </swiper>
 
@@ -133,9 +136,9 @@
     </view>
 
 
-    <swiper current="{{currenttxItemData}}" class='swiper' style="height:{{windowHeight-420}}rpx;"duration="300" bindchange="bindchange2">
+    <swiper current="{{currenttxItemData}}" class='swiper' style="height:{{windowHeight-420}}rpx;" duration="300" bindchange="bindchange2">
       <swiper-item catchtouchmove='catchTouchMove'>
-        <scroll-view scroll-y='true'  bindscrolltolower="loadMore2" lower-threshold="0">
+        <scroll-view wx:if='{{libaoxiaoshoulist.length>0}}' scroll-y='true' bindscrolltolower="loadMore2" lower-threshold="0">
           <view class='list_view'>
             <block wx:for="{{libaoxiaoshoulist}}" wx:for-item="item" wx:key="index">
               <view class='libao_xiaoshou_item'>
@@ -167,9 +170,12 @@
 
           </view>
         </scroll-view>
+        <view class='not_data' wx:else>
+          {{libaoxiaoshoutext}}
+        </view>
       </swiper-item>
       <swiper-item>
-        <scroll-view scroll-y='true' style='height:100%;' bindscrolltolower="loadMore1" lower-threshold="0">
+        <scroll-view wx:if='{{txjllist.length>0}}' scroll-y='true' style='height:100%;' bindscrolltolower="loadMore1" lower-threshold="0">
           <view class='list_view'>
             <block wx:for="{{txjllist}}" wx:for-item="item" wx:key="index">
               <view class='libao_tcjl_item'>
@@ -194,6 +200,9 @@
 
           </view>
         </scroll-view>
+        <view class='not_data' wx:else>
+          {{libaoxiaoshoutext}}
+        </view>
       </swiper-item>
     </swiper>
   </swiper-item>

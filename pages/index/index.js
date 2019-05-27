@@ -15,9 +15,11 @@ Page({
    * 页面的初始数据
    */
   data: {
+    jumptpye:0,
     color: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5],
     luckPosition: -1,
-    PrizeId:'',
+    close: true,
+    PublishId: '',
     list: '',
     images: '',
     phonenum: '未验证',
@@ -36,7 +38,7 @@ Page({
     type: 'number',
     isFocus: true,
     code: '',
-    exit : true,
+    agentId: '',
   },
 
   focusBox() {
@@ -51,33 +53,32 @@ Page({
   },
 
 
-  submitCode(e) {
-    console.log(e.detail.value.code);
-    if (e.detail.value.code.length < this.data.codeLength) {
+  submitCode() {
+    
+    if (this.data.code.length < this.data.codeLength) {
       wx.showToast({
-        title: '验证码没有填全哦~',
+        title: '抽奖码错误',
         icon: "none",
         duration: 1500
       })
     } else {
       var data = {
         DeviceId: this.data.deviceId,
-        Code: e.detail.value.code,
-        OpenId:app.globalData.openid,
+        Code: this.data.code,
+        OpenId: app.globalData.openid,
       }
-      console.log(data);
       network.getData("PrizeCode/", data, this.doSuccess, this.doFail, 3);
     }
   },
 
 
   mymd: function () {
-    if (this.data.zhezhaoval == false || this.data.luckPosition > 0) {
+    if (this.data.zhezhaoval == false || this.data.close === false || this.data.luckPosition > 0) {
       return;
     }
     let that = this;
     setTimeout(function () {
-      console.log('that.data.deviceId ='+that.data.deviceId);
+      
       wx.navigateTo({
         url: '../mymd/md?deviceId=' + that.data.deviceId
       })
@@ -85,23 +86,41 @@ Page({
     }, 100);
   },
 
-  mysj: function () {
-    console.log(this.data.zhezhaoval == false);
-    // if (this.data.zhezhaoval === false || this.data.luckPosition > 0) {
-    //   return;
-    // }
-    let that = this;
-    setTimeout(function () {
-      wx.navigateTo({
-        url: '../wssj/sj?deviceId=' + that.data.deviceId + "&avatar_img=" + that.data.avatar_img +
-          "&name=" + that.data.name
-      })
+  choujiang: function () {
+    if (this.data.zhezhaoval == true) {
+      this.setData({
+        zhezhaoval: false,
+        btnconfirm: '/images/dianjichoujiangd.png',
+      });
+    }
+  },
 
-    }, 100);
+
+  mysj: function () {
+  
+    if (this.data.zhezhaoval === false || this.data.close === false || this.data.luckPosition > 0) {
+      return;
+    }
+    if (this.data.agentId > 0) {
+      let that = this;
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '../wssj/sj?avatar_img=' + that.data.avatar_img +
+            "&name=" + that.data.name
+        })
+      }, 100);
+    } else {
+      wx.showModal({
+        title: '提示',
+        content: '您不是商家，不能进入',
+        showCancel: false
+      })
+    }
+
   },
 
   doSuccess: function (e, type) {
-    console.log(e)
+    console.log(e);
     let that = this;
     wx.hideLoading();
     switch (type) {
@@ -123,63 +142,81 @@ Page({
         break;
       case 2:
         {
-          console.log(e.PrizeId)
+          console.log(e);
           if (e.Code < 0) {
             wx.showModal({
               title: '服务器返回错误',
               content: e.Message,
               showCancel: false,
             })
-            return;
+            this.setData({
+              btnconfirm: '/images/lottery_start.bak.png'
+            })
+       
+          }else{
+            this.setData({
+              luckPosition: e.Index - 1,
+              inputShowed1: true,
+              PublishId: e.PublishId,
+              zhezhaoval: true,
+              code: ''
+            })
+            this.clickLuck();
           }
-          this.setData({
-            luckPosition: e.Index - 1,
-            inputShowed1: true,
-            PrizeId: e.PrizeId,
-            zhezhaoval: true,
-          })
-          this.clickLuck();
+  
         }
         break;
       case 3:
         {
 
-          e=true;
+          e = true;
           if (e === true) {
             var arr = new Array;
+            if (!this.data.images) {
+              return;
+            }
             this.data.images.forEach(function (value, index, arrSelf) {
-              // arr.push(arrSelf[index].GiftBagPublishId);
-              arr.push(3);
+              arr.push(arrSelf[index].GiftBagPublishId);
             })
             var data = {
               Id: that.data.deviceId,
               GiftBagPublishIds: arr,
               openid: app.globalData.openid,
             }
-            console.log(data);
+        
             network.request("Prize/", data, this.doSuccess, this.doFail, 2);
           } else {
-            wx.showModal({
-              title: '错误提示',
-              content: '抽奖码错误，请重新输入',
-              showCancel: false,
+            this.setData({
+              close: false,
+              zhezhaoval: true,
+              code:''
             })
           }
         }
         break;
       case 4:
         {
-          if (e == null){
+          if (e == null) {
+            app.globalData.phonenum = '未验证'
             that.setData({
               phonenum: '未验证',
+              agentId: 0,
             })
-          }else{
+          } else {
+            that.setData({
+              agentId: e.AgentId,
+            })
             if (util.isMobile(e.Phone)) {
               app.globalData.phonenum = e.Phone;
               that.setData({
                 phonenum: e.Phone,
               })
+              wx.setStorage({
+                key: 'phone',
+                data: app.globalData.phonenum,
+              })
             } else {
+              app.globalData.phonenum = '未验证';
               that.setData({
                 phonenum: '未验证',
               })
@@ -187,29 +224,27 @@ Page({
           }
         }
         break;
-        case 5:{
-          console.log(e);
-        }break
+      case 5: {
+        console.log(e);
+      } break
 
     }
 
   },
   doFail: function (e) {
     wx.hideLoading();
+    console.log(e);
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+
     let scene = decodeURIComponent(options.scene);
-    let devid= options.deviceId;
+    let devid = options.deviceId;
     this.data.deviceId = typeof (scene) == "undefined" ? devid : scene;
-    // console.log(' this.data.deviceId:+++++' + this.data.deviceId)
-    // wx.showModal({
-    //   title: 'this.data.deviceId',
-    //   content: this.data.deviceId + '======options' + options,
-    // })
+ 
+
     this.data.deviceId = 'b0a37e605efb';
     wx.setStorage({
       key: 'deviceId',
@@ -228,6 +263,12 @@ Page({
                 name: res.userInfo.nickName,
                 avatar_img: res.userInfo.avatarUrl,
               })
+              var userinfo = {
+                OpenId:app.globalData.openid,
+                NickName: res.userInfo.nickName,
+                UserIcon: res.userInfo.avatarUrl
+              }
+              network.putData("UserInfo/", userinfo,this.doSuccess, this.doFail, 20);
               this.jump(this.data.deviceId)
             }
           })
@@ -244,30 +285,29 @@ Page({
 
   getphone: function (e) {
     var that = this;
-    setTimeout(function(){
+    wx.getStorage({
+      key: 'phone',
+      success: function (res) {
+     
+        if (res.errMsg === 'getStorage:ok') {
+          app.globalData.phonenum = res.data;
+          that.setData({
+            phonenum: app.globalData.phonenum,
+          })
+        }
+
+      },
+      fail: function (e) {
+      }
+    })
+    setTimeout(function () {
       if (app.globalData.openid != null) {
-        wx.getStorage({
-          key: 'phone',
-          success: function (res) {
-            console.log(res);
-            if (res.errMsg === 'getStorage:ok'){
-              app.globalData.phonenum = res.data;
-              that.setData({
-                phonenum: app.globalData.phonenum,
-              })
-            }
-            clearTimeout() 
-          },
-          fail:function(e){
-            console.log(app.globalData.openid)
-            network.getData("UserInfo/" + app.globalData.openid, '', that.doSuccess, that.doFail, 4);
-            clearTimeout()  
-          }
-        })
+        network.getData("UserInfo/" + app.globalData.openid, '', that.doSuccess, that.doFail, 4);
+        clearTimeout()
       } else {
         clearTimeout()
       }
-    },1000)
+    }, 2000)
   },
 
   jump: function (deviceid) {
@@ -288,9 +328,10 @@ Page({
     }
   },
 
-  qes:function(){
-    network.deleteData("MobileValidCode/" + 13810006824, '', this.doSuccess, this.doFail, 5);
-  },
+  // qes: function () {
+  //   network.deleteData("MobileValidCode/" + 13810006824
+  //     , '', this.doSuccess, this.doFail, 5);
+  // },
 
   getUserInfo: function (res) {
 
@@ -303,9 +344,16 @@ Page({
         name: res.detail.userInfo.nickName,
         avatar_img: res.detail.userInfo.avatarUrl,
       })
-      console.log(app.globalData.openid)
+      var userinfo = {
+        OpenId:app.globalData.openid,
+        NickName: res.detail.userInfo.nickName,
+        UserIcon: res.detail.userInfo.avatarUrl
+      }
+      console.log(userinfo);
+      network.putData("UserInfo/", userinfo, this.doSuccess, this.doFail, 20);
+    
       if (app.globalData.openid == 'undefined' || app.globalData.openid == null) {
-        console.log('app.globalData.openid=======null')
+        
         // this.jump('');
       } else {
         this.jump(this.data.deviceId)
@@ -327,17 +375,11 @@ Page({
         title: '抽奖出现异常，请重新输入抽奖码',
         icon: 'none'
       })
+      this.setData({
+        btnconfirm: '/images/lottery_start.bak.png'
+      })
       return;
     }
-
-
-
-
-
-
-
-
-
 
     //清空计时器
     clearInterval(interval);
@@ -420,23 +462,30 @@ Page({
         e.stopLuck(which, index, time, splittime);
       } else {
         e.setData({
-          luckPosition: -1
+          luckPosition: -1,
+          btnconfirm: '/images/lottery_start.bak.png'
         })
         //1秒后显示弹窗
         setTimeout(function () {
           if (e.data.images[which].GiftBagPublishId > 0) {
             //中奖
+
             wx.navigateTo({
-              url: '../zjjg/zjjg?deviceId=' + e.data.deviceId + '&GiftBagPublishId=' + e.data.images[which].GiftBagPublishId + '&PrizeId=' + e.data.PrizeId
+              url: '../zjjg/zjjg?deviceId=' + e.data.deviceId + '&GiftBagPublishId=' + e.data.images[which].GiftBagPublishId + '&PublishId=' + e.data.PublishId
             })
           } else {
             //中奖
-            wx.showToast({
-              title: '未中奖',
-              icon: 'none'
-            })
-            wx.redirectTo({
-              url: '../qsye/qs?name=' + e.data.name
+            var that = e;
+            wx.showModal({
+              title: '提示',
+              content: '很遗憾未中奖',
+              showCancel:false,
+              confirmText:'知道了',
+              success(e){
+                wx.redirectTo({
+                  url: '../qsye/qs?name=' + that.data.name + "&avatar_img=" + that.data.avatar_img
+                })
+              }
             })
           }
         }, 1000);
@@ -513,17 +562,24 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if (app.globalData.phonenum.length>8){
-      this.setData({
-        phonenum: app.globalData.phonenum,
-      })
+   
+    switch (this.data.jumptpye){
+      case 0:{
+        if (app.globalData.phonenum.length > 8) {
+          this.setData({
+            phonenum: app.globalData.phonenum,
+          })
+        }
+      }break;
+      case 1:{
+        wx.navigateTo({
+          url: '../mymd/md?deviceId=' + this.data.deviceId
+        })
+        this.setData({
+          jumptpye:0,
+        })
+      }
     }
-    // if (this.data.zhezhaoval == true){
-    //   this.setData({
-    //     exit: app.globalData.ishide,
-    //   })
-    // }
-
 
   },
 
@@ -531,7 +587,7 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    console.log(222);
+  
     clearTimeout()
   },
 
@@ -539,7 +595,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    console.log(333);
+    
     clearTimeout()
   },
 

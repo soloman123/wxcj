@@ -56,6 +56,26 @@ function getData(url, data1, doSuccess, doFail, type) {
 }
 
 
+
+//GET请求，不需传参，直接URL调用，
+function putData(url, data1, doSuccess, doFail, type) {
+  wx.request({
+    url: host + url,
+    header: {
+      "content-type": "application/json;charset=UTF-8"
+    },
+    data: data1,
+    method: 'PUT',
+    success: function (res) {
+
+      doSuccess(res.data, type);
+    },
+    fail: function () {
+      doFail();
+    },
+  })
+}
+
 //GET请求，不需传参，直接URL调用，
 function deleteData(url, data1, doSuccess, doFail, type) {
   wx.request({
@@ -79,3 +99,4 @@ function deleteData(url, data1, doSuccess, doFail, type) {
 module.exports.request = request;
 module.exports.getData = getData;
 module.exports.deleteData = deleteData;
+module.exports.putData = putData;

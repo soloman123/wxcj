@@ -19,7 +19,7 @@
           <view class='Code' wx:if="{{item.PayState ==1}}">有效期到:{{item.ExpireDate}}</view>
           <view class='je'>
             <view class='Code' wx:if="{{item.PayState ==1}}">购买时间:{{item.PayTime}}</view>
-            <view class='Code' wx:elif="{{item.PayState ==0}}">剩余支付时间:{{item.RemainingTime}}</view>
+            <view class='Code' wx:elif="{{item.PayState ==0}}">剩余支付时间:{{item.PayExpireDate}}</view>
             <view class='Code' wx:else></view>
             <view class='Code' wx:if="{{item.PayState ==1}}">已支付</view>
             <view class='item_Cost' wx:elif="{{item.PayState ==0}}">等待支付</view>
