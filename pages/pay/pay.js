@@ -117,6 +117,7 @@ Page({
    */
   onLoad: function (options) {
     // console.log(options);
+    wx.hideShareMenu()
     let _index  = -1;
     if (options.type == 0){
       _index = options.index;

@@ -51,7 +51,7 @@
           </block>
         </view>
         <input class='realCode' type='number' focus="{{isFocus}}" bindinput="inputCode" maxlength='{{codeLength}}' name="code" value='{{code}}'></input>
-        <button formType="submit" class='button_down' bindtap='submitCode'>确定</button>
+        <button  class='button_down' bindtap='submitCode' disabled='{{buttonClicked}}'>确定</button>
 
 
       </view>

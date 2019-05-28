@@ -44,6 +44,7 @@ Page({
     avatar_img: '',
     sgcode: '',
     phonenum: '',
+    availableCost:0,
   },
 
   libaoxiaoshou: function () {
@@ -71,6 +72,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.hideShareMenu()
     wx.getSystemInfo({
       success: (res) => {
         let windowHeight = (res.windowHeight * (750 / res.windowWidth));
@@ -83,6 +85,7 @@ Page({
       name: options.name,
       avatar_img: options.avatar_img,
       phonenum: app.globalData.phonenum,
+      availableCost: options.availableCost,
     })
 
 

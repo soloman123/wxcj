@@ -34,7 +34,27 @@ const ismobile = phone=> {
   }
 }
 
+
+function buttonClicked(self) {
+  self.setData({
+
+    buttonClicked: true
+
+  })
+
+  setTimeout(function () {
+    self.setData({
+
+      buttonClicked: false
+
+    })
+
+  }, 500)
+
+}
+
 module.exports = {
   formatTime: formatTime,
-  isMobile: ismobile
+  isMobile: ismobile,
+  buttonClicked:buttonClicked
 }

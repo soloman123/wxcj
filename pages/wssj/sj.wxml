@@ -121,7 +121,7 @@
   </swiper-item>
   <swiper-item catchtouchmove='catchTouchMove'>
     <view class='tixian_view'>
-      <text class='tixian_text'>可用余额:{{money}}元</text>
+      <text class='tixian_text'>可用余额:{{availableCost}}元</text>
       <view class='tixian_text_h' bindtap='sqtx'>申请提现</view>
     </view>
     <view class='swiper_hx'>

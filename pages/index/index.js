@@ -15,6 +15,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    buttonClicked: false,
     jumptpye:0,
     color: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5],
     luckPosition: -1,
@@ -39,6 +40,7 @@ Page({
     isFocus: true,
     code: '',
     agentId: '',
+    availableCost:0,
   },
 
   focusBox() {
@@ -53,8 +55,9 @@ Page({
   },
 
 
-  submitCode() {
-    
+  submitCode( e) {
+  console.log(e)
+    util.buttonClicked(this)
     if (this.data.code.length < this.data.codeLength) {
       wx.showToast({
         title: '抽奖码错误',
@@ -106,7 +109,7 @@ Page({
       setTimeout(function () {
         wx.navigateTo({
           url: '../wssj/sj?avatar_img=' + that.data.avatar_img +
-            "&name=" + that.data.name
+            "&name=" + that.data.name + '&availableCost=' + that.data.availableCost
         })
       }, 100);
     } else {
@@ -142,7 +145,7 @@ Page({
         break;
       case 2:
         {
-          console.log(e);
+         
           if (e.Code < 0) {
             wx.showModal({
               title: '服务器返回错误',
@@ -205,6 +208,7 @@ Page({
           } else {
             that.setData({
               agentId: e.AgentId,
+              availableCost: e.AvailableCost,
             })
             if (util.isMobile(e.Phone)) {
               app.globalData.phonenum = e.Phone;
@@ -239,7 +243,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    wx.hideShareMenu()
     let scene = decodeURIComponent(options.scene);
     let devid = options.deviceId;
     this.data.deviceId = typeof (scene) == "undefined" ? devid : scene;

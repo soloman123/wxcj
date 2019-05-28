@@ -92,6 +92,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.hideShareMenu()
     this.data.deviceId = options.deviceId
     this.data.GiftBagPublishId = options.GiftBagPublishId;
     this.data.PublishId = options.PublishId;

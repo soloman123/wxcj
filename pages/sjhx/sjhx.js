@@ -32,7 +32,7 @@ Page({
    */
   onLoad: function(options) {
     
-
+    wx.hideShareMenu()
     this.setData({
       Consumption :JSON.parse(options.Consumption),
       ConsumptionCode: options.code,
