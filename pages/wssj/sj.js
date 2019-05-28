@@ -110,7 +110,7 @@ Page({
 
   loadMore: function () {
     var request = false;
-    if (this.data.retdata === null) {
+    if (this.data.retdata == null) {
       request = true;
     } else if (this.data.PageIndex <= this.data.retdata.Page.TotalPage) {
       request = true;
@@ -128,7 +128,7 @@ Page({
 
   loadMore2: function () {
     var request = false;
-    if (this.data.libaoxiaoshouretdata === null) {
+    if (this.data.libaoxiaoshouretdata == null) {
       request = true;
     } else if (this.data.libaoxiaoshouPageIndex <= this.data.libaoxiaoshouretdata.Page.TotalPage) {
       request = true;
@@ -149,7 +149,7 @@ Page({
     if (this.data.txjlretdata.Page == undefined) {
       return false;
     }
-    if (this.data.txjlretdata === null) {
+    if (this.data.txjlretdata == null) {
       request = true;
     } else if (this.data.txjlPageIndex <= this.data.txjlretdata.Page.TotalPage) {
       request = true;
@@ -174,7 +174,7 @@ Page({
   },
 
   submit: function () {
-    if (this.data.sgcode.length <= 0) {
+    if (this.data.sgcode.trim().length <= 0) {
       wx.showModal({
         title: '错误提示',
         content: '请正确输入核销码',
@@ -292,6 +292,7 @@ Page({
         }
         break;
       case 4:
+        console.log(e)
         if (e) {
           wx.navigateTo({
             url: '../sjhx/sjhx?code=' + this.data.sgcode + "&Consumption=" + JSON.stringify(e)
@@ -301,8 +302,8 @@ Page({
           // })
         } else {
           wx.showModal({
-            title: '服务器返回错误信息',
-            content: '核销码不正确,请认真填写核销码',
+            title: '错误信息',
+            content: '核销码不正确,请仔细填写核销码',
             showCancel: false,
             success(res) {
 

@@ -31,14 +31,14 @@
 
   <view wx:if='{{cursor == 2}}'>
     <view class='txje'>银 行
-      <input class='input_v' placeholder='输入所在银行' type='number' bindinput='BankName'></input>
+      <input class='input_v' placeholder='输入所在银行' bindinput='BankName'></input>
     </view>
 
     <view class='back'>
       <view class='line'></view>
     </view>
     <view class='txje'>开户行
-      <input class='input_v' placeholder='输入开户行地址' type='number' bindinput='BankDeposit'></input>
+      <input class='input_v' placeholder='输入开户行地址' bindinput='BankDeposit'></input>
     </view>
 
     <view class='back'>
@@ -47,13 +47,13 @@
 
   </view>
   <view class='txje'>收款人
-    <input class='input_v' placeholder='输入收款人姓名' type='number' bindinput='ReceiveName'></input>
+    <input class='input_v' placeholder='输入收款人姓名'  bindinput='ReceiveName'></input>
   </view>
   <view class='back'>
     <view class='line'></view>
   </view>
   <view class='txje'>收款账号
-    <input class='input_v' placeholder='输入收款账号' type='number' bindinput='Account'></input>
+    <input class='input_v' placeholder='输入收款账号' bindinput='Account'></input>
   </view>
   <view class='back'>
     <view class='line'></view>

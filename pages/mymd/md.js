@@ -45,11 +45,11 @@ Page({
 
     console.log("sssss");
 
-    if (this.data.list[e.currentTarget.dataset.index].PayState === 0) {
+    if (this.data.list[e.currentTarget.dataset.index].PayState == 0) {
       wx.navigateTo({
         url: '../pay/pay?retdata=' + JSON.stringify(this.data.list[e.currentTarget.dataset.index]) + "&deviceId=" + this.data.deviceId + "&PrizeId=" + this.data.list[e.currentTarget.dataset.index].PrizeId + "&type=" + 0 + "&index=" + e.currentTarget.dataset.index
       })
-    } else if (this.data.list[e.currentTarget.dataset.index].PayState === 1){
+    } else if (this.data.list[e.currentTarget.dataset.index].PayState == 1){
       wx.navigateTo({
         url: '../lbxq/lbxq?PrizeId=' + this.data.list[e.currentTarget.dataset.index].PrizeId + "&icon=" +
           this.data.list[e.currentTarget.dataset.index].Icon + "&name=" + this.data.list[e.currentTarget.dataset.index].Name
@@ -148,7 +148,7 @@ Page({
    */
   onReachBottom: function () {
     var request = false;
-    if (this.data.retdata === null) {
+    if (this.data.retdata == null) {
       request = true;
     } else if (this.data.PageIndex <= this.data.retdata.Page.TotalPage) {
       request = true;

@@ -10,11 +10,12 @@ Page({
    */
   data: {
 
-    icon:'',
-    name:'',
+    icon: '',
+    name: '',
     retdata: '',
     list: '',
     deviceId: 1,
+    click_item_index: -1,
     isFromSearch: true,
     PageIndex: 1,   // 设置加载的第几次，默认是第一次  
   },
@@ -34,27 +35,31 @@ Page({
   onLoad: function (options) {
 
     this.setData({
-      name:options.name,
-      icon:options.icon,
+      name: options.name,
+      icon: options.icon,
     })
     this.load(options.PrizeId);
   },
 
-  click_item:function(e){
-    console.log('#####'+this.data.list[e.currentTarget.dataset.index].ConsumptionState);
+  click_item: function (e) {
+    console.log('#####' + this.data.list[e.currentTarget.dataset.index].ConsumptionState);
+    this.setData({
+      click_item_index: e.currentTarget.dataset.index,
+    })
     wx.navigateTo({
-                         
-      url: '../hexiao/hx?PrizeProductid=' + 
-        this.data.list[e.currentTarget.dataset.index].PrizeProductid +"&ConsumptionState="+
+
+      url: '../hexiao/hx?PrizeProductid=' +
+        this.data.list[e.currentTarget.dataset.index].PrizeProductid + "&ConsumptionState=" +
         this.data.list[e.currentTarget.dataset.index].ConsumptionState
 
     })
 
-      // ? info = ' + JSON.stringify(this.data.list[e.currentTarget.dataset.index])
+    // ? info = ' + JSON.stringify(this.data.list[e.currentTarget.dataset.index])
   },
 
   doSuccess: function (e, tpye) {
     console.log(e);
+    wx.hideLoading();
     var that = this;
     switch (tpye) {
       case 1: {
@@ -68,7 +73,7 @@ Page({
           })
         } else {
           wx.showToast({
-            title: '以无数据加载',
+            title: '无数据加载',
             icon: 'none'
           })
           that.setData({
@@ -76,6 +81,15 @@ Page({
           })
         }
       } break;
+      case 2:{
+        var _list = that.data.list;
+        _list[that.data.click_item_index].ConsumptionState = e.ConsumptionState;
+        that.setData({
+          list: _list,
+          click_item_index: -1,
+        });
+
+      }break;
     }
   },
   doFail: function () {
@@ -95,6 +109,10 @@ Page({
    */
   onShow: function () {
 
+    if (this.data.click_item_index >= 0) {
+      wx.showLoading();
+      network.getData("UserProductInfo/" + this.data.list[this.data.click_item_index].PrizeProductid, '', this.doSuccess, this.doFail, 2);
+    }
   },
 
   /**
@@ -108,7 +126,6 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    console.log('lbxq -onUnload')
   },
 
   /**
@@ -123,7 +140,7 @@ Page({
    */
   onReachBottom: function () {
     var request = false;
-    if (this.data.retdata === null) {
+    if (this.data.retdata == null) {
       request = true;
     } else if (this.data.PageIndex <= this.data.retdata.Page.TotalPage) {
       request = true;

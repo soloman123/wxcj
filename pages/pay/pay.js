@@ -64,6 +64,8 @@ Page({
                 let pages = getCurrentPages();
                 let mdpage = pages[pages.length - 2]; 
                 mdpage.data.retdata.List[that.data.index].PayState = 1;
+               
+                mdpage.data.retdata.List[that.data.index].PayTime = util.formatTime(new Date(e.timeStamp * 1000));
                 mdpage.setData({
                   list: mdpage.data.retdata.List,
                 })
@@ -133,6 +135,7 @@ Page({
     })
     // console.log(this.data.item)
   },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成

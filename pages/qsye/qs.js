@@ -1,6 +1,7 @@
 // pages/qsye/qs.js
 const app = getApp()
 var network = require("../../utils/network.js")
+var util = require("../../utils/util.js");
 Page({
 
   /**
@@ -111,22 +112,23 @@ Page({
           }
         }
         break;
-        case 4:{
+        case 2:{
         {
-          if (e == null) {
+          console.log(res);
+          if (res == null) {
             app.globalData.phonenum = '未验证'
             that.setData({
               phonenum: '未验证',
               agentId: 0,
             })
           } else {
-            that.setData({
-              agentId: e.AgentId,
+            this.setData({
+              agentId: res.AgentId,
             })
-            if (util.isMobile(e.Phone)) {
-              app.globalData.phonenum = e.Phone;
-              that.setData({
-                phonenum: e.Phone,
+            if (util.isMobile(res.Phone)) {
+              app.globalData.phonenum = res.Phone;
+              this.setData({
+                phonenum: res.Phone,
               })
               wx.setStorage({
                 key: 'phone',
@@ -134,7 +136,7 @@ Page({
               })
             } else {
               app.globalData.phonenum = '未验证';
-              that.setData({
+              this.setData({
                 phonenum: '未验证',
               })
             }

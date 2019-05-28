@@ -168,7 +168,7 @@ Page({
 
 
     var request = false;
-    if (this.data.retdata === null) {
+    if (this.data.retdata == null) {
       request = true;
     } else if (this.data.PageIndex <= this.data.retdata.Page.TotalPage) {
       request = true;

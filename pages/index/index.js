@@ -73,7 +73,7 @@ Page({
 
 
   mymd: function () {
-    if (this.data.zhezhaoval == false || this.data.close === false || this.data.luckPosition > 0) {
+    if (this.data.zhezhaoval == false || this.data.close == false || this.data.luckPosition > 0) {
       return;
     }
     let that = this;
@@ -98,7 +98,7 @@ Page({
 
   mysj: function () {
   
-    if (this.data.zhezhaoval === false || this.data.close === false || this.data.luckPosition > 0) {
+    if (this.data.zhezhaoval == false || this.data.close == false || this.data.luckPosition > 0) {
       return;
     }
     if (this.data.agentId > 0) {
@@ -170,7 +170,7 @@ Page({
         {
 
           e = true;
-          if (e === true) {
+          if (e == true) {
             var arr = new Array;
             if (!this.data.images) {
               return;
@@ -289,7 +289,7 @@ Page({
       key: 'phone',
       success: function (res) {
      
-        if (res.errMsg === 'getStorage:ok') {
+        if (res.errMsg == 'getStorage:ok') {
           app.globalData.phonenum = res.data;
           that.setData({
             phonenum: app.globalData.phonenum,
@@ -335,7 +335,7 @@ Page({
 
   getUserInfo: function (res) {
 
-    if (res.detail.errMsg === 'getUserInfo:fail auth deny') {
+    if (res.detail.errMsg == 'getUserInfo:fail auth deny') {
 
     } else {
       app.globalData.userInfo = res.detail.userInfo;
