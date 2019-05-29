@@ -49,11 +49,10 @@ Page({
   },
 
   click_getcode:function(){
-
       var data = {
         Mobile: app.globalData.phonenum,
         Type: 0,
-        BType: 0,
+        BType: 2,
       }
       console.log(data)
       network.getData("MobileValidCode/", data, this.doSuccess, this.doFail, 1);
@@ -63,7 +62,7 @@ Page({
     var data = {
       Mobile: app.globalData.phonenum,
       Type: 1,
-      BType: 0,
+      BType: 2,
     }
     console.log(data)
     network.getData("MobileValidCode/", data, this.doSuccess, this.doFail, 2);

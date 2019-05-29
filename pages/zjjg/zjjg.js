@@ -21,7 +21,7 @@ Page({
   },
 
 
-  load: function () {
+  load: function() {
 
     wx.showLoading({
       title: '正在加载',
@@ -31,13 +31,22 @@ Page({
 
   },
 
-  doSuccess: function (e, type) {
+  doSuccess: function(e, type) {
     console.log(e)
-    let that = this;
-    switch (type) {
-      case 0:
-        {
-          setTimeout(function () {
+    wx.hideLoading();
+    if (e.Code < 0) {
+      wx.showModal({
+        title: '服务器返回错误',
+        content: e.Message,
+      })
+    } else {
+      let that = this;
+      switch (type) {
+        case 0:
+          {
+
+
+            e.ExpireDate = e.ExpireDate.substring(0, e.ExpireDate.indexOf(' '))
             that.setData({
               retdata: e,
             })
@@ -59,39 +68,33 @@ Page({
                 isFromSearch: true,
               })
             }
-            wx.hideLoading();
-          }, 400);
-        }
-        break;
-      case 1:
-        {
-          if (e.Code < 0) {
-            wx.showModal({
-              title: '服务器返回错误',
-              content: e.Message,
-            })
-          } else {
+          }
+          break;
+        case 1:
+          {
             that.setData({
               PrizeId: e,
             })
             wx.navigateTo({
               url: '../pay/pay?retdata=' + JSON.stringify(this.data.retdata) + "&PrizeId=" + this.data.PrizeId + "&deviceId=" + this.data.deviceId + "&type=" + 1
             })
+
           }
-        }
-        break;
+          break;
+      }
     }
 
 
 
+
   },
-  doFail: function (e) {
+  doFail: function(e) {
     wx.hideLoading();
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     wx.hideShareMenu()
     this.data.deviceId = options.deviceId
     this.data.GiftBagPublishId = options.GiftBagPublishId;
@@ -100,7 +103,7 @@ Page({
   },
 
 
-  pay_mit: function () {
+  pay_mit: function() {
 
     // this.data.phonenum= 1;
     if (!util.isMobile(app.globalData.phonenum)) {
@@ -124,28 +127,28 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
     console.log('生命周期函数--监听页面显示');
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
     let pages = getCurrentPages();
     console.log(pages.length);
     var page = pages[pages.length - 2];
@@ -157,7 +160,7 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
     console.log('!!!!!!');
   },
 
@@ -165,7 +168,7 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
 
     var request = false;
@@ -187,7 +190,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })

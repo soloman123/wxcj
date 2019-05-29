@@ -32,7 +32,7 @@
           <text class='item_tit_name_size1'>消费规则</text>
           <view class='line1'></view>
         </view>
-        <text class='item_tit_name_size'>{{item.UseRole}}"</text>
+        <text class='item_tit_name_size'>{{item.UseRole}}</text>
       </view>
     </block>
     <view class='test'></view>

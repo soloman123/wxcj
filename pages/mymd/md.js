@@ -76,6 +76,11 @@ Page({
       case 1:
         {
           if (e.List.length > 0) {
+            e.List.forEach(function (value, index, arrSelf) {
+              arrSelf[index].ExpireDate = arrSelf[index].ExpireDate.substring(0,
+                arrSelf[index].ExpireDate.indexOf(' ')
+              );
+            })
             let searchList = '';
             that.data.isFromSearch ? searchList = e.List : searchList = that.data.list.concat(e.List)
             that.setData({

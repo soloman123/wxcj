@@ -56,6 +56,8 @@ Page({
 
   doSuccess: function (e, type) {
     console.log(e);
+    wx.hideLoading()
+
     let that = this;
     switch (type) {
       case 1: {
@@ -64,13 +66,12 @@ Page({
             title: e.Message,
             icon: 'none'
           })
-
         } else {
           this.verification();
         }
       } break;
       case 2:{
-        wx.hideLoading()
+      
         if (e.Code < 0) {
           wx.showToast({
             title: '绑定失败:' + e.Message,
