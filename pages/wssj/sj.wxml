@@ -19,7 +19,7 @@
       <image wx:if='{{currentData == 1}}' class='dindan_icon' src='/images/icon_hx02.png' mode='widthFix'></image>
       <text class='userinfo_text'>提成</text>
     </view>
-    <view class='top_right_height'bindtap='grzx'>
+    <view class='top_right_height' bindtap='grzx'>
       <image class='dindan_icon' src='/images/icon_hx03_gray.png' mode='widthFix'></image>
       <text class='userinfo_text'>个人中心</text>
     </view>
@@ -157,10 +157,10 @@
                 </view>
                 <view class='line'></view>
                 <view class='chanpin_body'>
-                  <image class='chanpin_icon_112' src='{{avatar_img}}' mode='widthFix'></image>
+                  <image class='chanpin_icon_112' src='{{item.UserIcon}}' mode='widthFix'></image>
                   <view class='text_hg'>
                     <view class='je'>
-                      <view class='chanpin_text_size'>111111</view>
+                      <view class='chanpin_text_size'>{{item.Nickname}}</view>
                     </view>
                     <view class='chanpin_text_size_24'>购买时间:{{item.PayTime}}</view>
                   </view>
@@ -182,16 +182,29 @@
 
                 <view class='txjl_item_m'>
                   <view class='tx_h_item_v'>
-                    <view class='tixian_text_size_24'>单号:xxxxxxxxxx</view>
-                    <view class='tixian_text_size_24'>日期</view>
+                    <view class='tixian_text_size_24'>单号:{{item.Code}}</view>
+                    <view class='tixian_text_size_24'>日期:{{item.CreateTime}}</view>
                   </view>
-                  <view class='tixian_text_size_24'>金额:</view>
-                  <view class='tixian_text_size_24'>提现到:</view>
-                  <view class='tixian_text_size_24'>收款人:</view>
-                  <view class='tx_h_item_v'>
-                    <view class='tixian_text_size_24'>收款账号:</view>
+                  <view class='tixian_text_size_24'>金额:{{item.Cost}}</view>
+                  <view wx:if='{{item.PaymentType == 2}}' class='tixian_text_size_24'>提现到:银行卡</view>
+                  <view wx:else class='tixian_text_size_24'>提现到:支付宝 </view>
 
-                    <view class='tixian_text_h_status'>提现成功</view>
+                  <view wx:if='{{item.PaymentType == 2}}' class='tixian_text_size_24'>收款人:{{item.BandReceiveName}}</view>
+                  <view wx:else class='tixian_text_size_24'>收款人:{{item.AlipayReceiveName}} </view>
+
+
+                  <view class='tx_h_item_v'>
+                    <view wx:if='{{item.PaymentType == 2}}' class='tixian_text_size_24'>收款账号:{{item.BankAccount}}</view>
+                    <view wx:else class='tixian_text_size_24'>收款账号:{{item.AlipayAccount}} </view>
+
+
+                    <view wx:if='{{item.AuditState == 0}}' class='tixian_text_h_status'>待审核</view>
+                    <view wx:elif='{{item.AuditState == 1}}' class='tixian_text_h_status'>已到账</view>
+                    <view wx:else class='tixian_text_h_status'>拒绝</view>
+
+
+
+                    <!-- <view class='tixian_text_h_status'>提现成功</view> -->
                   </view>
                 </view>
 

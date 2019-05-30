@@ -15,6 +15,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    error:'',
     buttonClicked: false,
     jumptpye:0,
     color: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5],
@@ -25,7 +26,7 @@ Page({
     images: '',
     phonenum: '未验证',
     images_back: '/images/lottery_box_bg.png',
-    btnconfirm: '/images/dianjichoujiangd.png',
+    btnconfirm: '/images/lottery_start.bak.png',
     avatar_img: '/images/user_img.png',
     headimg: '/images/head.png',
     defimg: '/images/2.png',
@@ -63,6 +64,10 @@ Page({
         title: '抽奖码错误',
         icon: "none",
         duration: 1500
+      })
+      this.setData({
+        zhezhaoval: true,
+        code: ''
       })
     } else {
       var data = {
@@ -135,6 +140,7 @@ Page({
               content: e.Message,
               showCancel: false,
             })
+       
           } else {
             that.setData({
               images: e.Images,
@@ -145,7 +151,6 @@ Page({
         break;
       case 2:
         {
-         
           if (e.Code < 0) {
             wx.showModal({
               title: '服务器返回错误',
@@ -171,8 +176,6 @@ Page({
         break;
       case 3:
         {
-
-          e = true;
           if (e == true) {
             var arr = new Array;
             if (!this.data.images) {
@@ -190,6 +193,7 @@ Page({
             network.request("Prize/", data, this.doSuccess, this.doFail, 2);
           } else {
             this.setData({
+              error:'抽奖码错误',
               close: false,
               zhezhaoval: true,
               code:''
@@ -245,16 +249,15 @@ Page({
   onLoad: function (options) {
     wx.hideShareMenu()
     let scene = decodeURIComponent(options.scene);
-    let devid = options.deviceId;
-    this.data.deviceId = typeof (scene) == "undefined" ? devid : scene;
- 
-
-    this.data.deviceId = 'b0a37e605efb';
-    wx.setStorage({
-      key: 'deviceId',
-      data: 'b0a37e605efb'
-    })
-
+    let devid = options.deviceId +'';
+    this.data.deviceId = scene == "undefined" ? devid : scene;
+    this.data.deviceId = '60427f874be4';
+    if (this.data.deviceId != 'undefined'){
+      wx.setStorage({
+        key: 'deviceId',
+        data: this.data.deviceId
+      })
+    }
     wx.getSetting({
       success: res => {
         if (res.authSetting['scope.userInfo']) {
@@ -315,20 +318,18 @@ Page({
   },
 
   jump: function (deviceid) {
-    if (deviceid) {
-      this.setData({
-        zhezhaoval: false,
+    var that = this;
+    
+    if (deviceid == 'undefined') {
+      wx.redirectTo({
+        url: '../qsye/qs?name=' + this.data.name + "&avatar_img=" + this.data.avatar_img
       })
+    } else {
+
       wx.showLoading({
         title: '加载数据中...',
       })
       network.getData("GiftBagPool/" + this.data.deviceId, '', this.doSuccess, this.doFail, 1);
-    } else {
-
-      wx.redirectTo({
-        url: '../qsye/qs?name=' + this.data.name + "&avatar_img=" + this.data.avatar_img
-      })
-
     }
   },
 

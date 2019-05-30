@@ -471,7 +471,7 @@ scroll-view {
 }
 
 .tixian_text_size_24 {
-  width: 300rpx;
+  /* width: 300rpx; */
   font-size: 24rpx;
   color: #999;
 }

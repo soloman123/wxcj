@@ -172,12 +172,12 @@ Page({
     console.log(e);
     e.detail.value
     this.setData({
-      sgcode: e.detail.value,
+      sgcode: e.detail.value.trim(),
     })
   },
 
   submit: function () {
-    if (this.data.sgcode.trim().length <= 0) {
+    if (this.data.sgcode.length <= 0) {
       wx.showModal({
         title: '错误提示',
         content: '请正确输入核销码',
@@ -185,6 +185,7 @@ Page({
         confirmText: '知道了'
       })
     } else {
+   
       network.getData("Consumption/" + this.data.sgcode, '', this.doSuccess, this.doFail, 4);
     }
 
@@ -337,7 +338,7 @@ Page({
           })
         } else {
           that.setData({
-            sgcode: res.result,
+            sgcode: res.result.trim(),
           })
           network.getData("Consumption/" + that.data.sgcode, '', that.doSuccess, that.doFail, 4);
         }
